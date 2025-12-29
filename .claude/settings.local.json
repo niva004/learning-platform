@@ -3,7 +3,8 @@
     "allow": [
       "Bash(find:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "WebFetch(domain:niva004.github.io)"
     ]
   }
 }
