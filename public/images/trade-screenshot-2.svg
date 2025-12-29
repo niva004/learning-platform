@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#161b22"/>
+
+  <!-- Grid lines -->
+  <g stroke="#30363d" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="500" y1="0" x2="500" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="700" y1="0" x2="700" y2="500"/>
+  </g>
+
+  <!-- Support/Resistance zones -->
+  <rect x="0" y="120" width="800" height="30" fill="#00d26a" opacity="0.1"/>
+  <rect x="0" y="350" width="800" height="30" fill="#00d26a" opacity="0.1"/>
+
+  <!-- Price labels -->
+  <g fill="#8b949e" font-family="monospace" font-size="12">
+    <text x="760" y="105">147.50</text>
+    <text x="760" y="205">146.50</text>
+    <text x="760" y="305">145.50</text>
+    <text x="760" y="405">144.50</text>
+  </g>
+
+  <!-- Candlesticks - downtrend then reversal -->
+  <g>
+    <!-- Red candles (bearish) -->
+    <line x1="80" y1="100" x2="80" y2="160" stroke="#ff4757" stroke-width="1"/>
+    <rect x="72" y="110" width="16" height="35" fill="#ff4757"/>
+
+    <line x1="120" y1="140" x2="120" y2="200" stroke="#ff4757" stroke-width="1"/>
+    <rect x="112" y="150" width="16" height="35" fill="#ff4757"/>
+
+    <line x1="160" y1="180" x2="160" y2="250" stroke="#ff4757" stroke-width="1"/>
+    <rect x="152" y="195" width="16" height="40" fill="#ff4757"/>
+
+    <line x1="200" y1="230" x2="200" y2="300" stroke="#ff4757" stroke-width="1"/>
+    <rect x="192" y="245" width="16" height="40" fill="#ff4757"/>
+
+    <line x1="240" y1="280" x2="240" y2="350" stroke="#ff4757" stroke-width="1"/>
+    <rect x="232" y="295" width="16" height="40" fill="#ff4757"/>
+
+    <!-- Reversal doji -->
+    <line x1="280" y1="320" x2="280" y2="380" stroke="#8b949e" stroke-width="1"/>
+    <rect x="272" y="345" width="16" height="8" fill="#8b949e"/>
+
+    <!-- Green candles (bullish reversal) -->
+    <line x1="320" y1="360" x2="320" y2="300" stroke="#00d26a" stroke-width="1"/>
+    <rect x="312" y="310" width="16" height="40" fill="#00d26a"/>
+
+    <line x1="360" y1="330" x2="360" y2="260" stroke="#00d26a" stroke-width="1"/>
+    <rect x="352" y="275" width="16" height="45" fill="#00d26a"/>
+
+    <line x1="400" y1="290" x2="400" y2="220" stroke="#00d26a" stroke-width="1"/>
+    <rect x="392" y="235" width="16" height="40" fill="#00d26a"/>
+
+    <line x1="440" y1="250" x2="440" y2="180" stroke="#00d26a" stroke-width="1"/>
+    <rect x="432" y="195" width="16" height="40" fill="#00d26a"/>
+
+    <line x1="480" y1="210" x2="480" y2="150" stroke="#00d26a" stroke-width="1"/>
+    <rect x="472" y="165" width="16" height="35" fill="#00d26a"/>
+  </g>
+
+  <!-- Trendlines -->
+  <line x1="80" y1="110" x2="280" y2="350" stroke="#ff4757" stroke-width="2" stroke-dasharray="8,4"/>
+  <line x1="280" y1="370" x2="500" y2="150" stroke="#00d26a" stroke-width="2"/>
+
+  <!-- Entry point marker -->
+  <circle cx="320" cy="350" r="10" fill="#00d26a" opacity="0.3"/>
+  <circle cx="320" cy="350" r="5" fill="#00d26a"/>
+  <text x="335" y="355" fill="#00d26a" font-size="12" font-weight="bold">BUY 145.20</text>
+
+  <!-- Profit box -->
+  <rect x="550" y="30" width="220" height="80" rx="8" fill="#0d1117" stroke="#00d26a" stroke-width="2"/>
+  <text x="570" y="55" fill="#8b949e" font-size="12">Profit</text>
+  <text x="570" y="85" fill="#00d26a" font-size="28" font-weight="bold">+230 pips</text>
+  <text x="570" y="100" fill="#00d26a" font-size="12">+$2,300 USD</text>
+
+  <!-- Pattern label -->
+  <rect x="240" y="390" width="100" height="25" rx="4" fill="#ffd700" opacity="0.2"/>
+  <text x="255" y="408" fill="#ffd700" font-size="12" font-weight="bold">REVERSAL</text>
+
+  <!-- Trade info -->
+  <rect x="20" y="440" width="760" height="50" rx="4" fill="#0d1117"/>
+  <text x="40" y="470" fill="#8b949e" font-size="12">USD/JPY | Long Position | Risk: 2% | RR: 1:4.6 | Setup: Double Bottom</text>
+</svg>

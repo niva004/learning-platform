@@ -3,21 +3,185 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --card-bg: #161b22;
+  --card-border: #30363d;
+  --accent-green: #00d26a;
+  --accent-green-dark: #00a854;
+  --accent-red: #ff4757;
+  --accent-gold: #ffd700;
+  --text-muted: #8b949e;
+  --text-secondary: #c9d1d9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Trading theme gradient backgrounds */
+.bg-trading-dark {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+}
+
+.bg-trading-card {
+  background: rgba(22, 27, 34, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+}
+
+.bg-trading-hero {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 210, 106, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 168, 84, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+}
+
+/* Chart-like background pattern */
+.bg-chart-pattern {
+  background-image:
+    linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Candlestick animation */
+@keyframes candleGrow {
+  0%, 100% { height: 20px; }
+  50% { height: 60px; }
+}
+
+@keyframes priceUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Green glow effect */
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 210, 106, 0.3), 0 0 40px rgba(0, 210, 106, 0.1);
+}
+
+.glow-green-sm {
+  box-shadow: 0 0 10px rgba(0, 210, 106, 0.2);
+}
+
+/* Gold glow for premium */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+}
+
+/* Button styles */
+.btn-trading-primary {
+  background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
+  color: #000;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-trading-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 210, 106, 0.3);
+}
+
+.btn-trading-secondary {
+  background: transparent;
+  border: 2px solid var(--accent-green);
+  color: var(--accent-green);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-trading-secondary:hover {
+  background: var(--accent-green);
+  color: #000;
+}
+
+/* Card hover effects */
+.card-trading {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.card-trading:hover {
+  border-color: var(--accent-green);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 210, 106, 0.1);
+}
+
+/* Stat counters */
+.stat-number {
+  background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Screenshot container */
+.screenshot-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Profit indicator */
+.profit-badge {
+  background: rgba(0, 210, 106, 0.1);
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+}
+
+.loss-badge {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* Animated border */
+@keyframes borderGlow {
+  0%, 100% { border-color: var(--card-border); }
+  50% { border-color: var(--accent-green); }
+}
+
+.animate-border-glow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Trading lines animation */
+@keyframes tradingLine {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-trading-line {
+  stroke-dasharray: 1000;
+  animation: tradingLine 3s ease-in-out forwards;
 }
 
 @layer utilities {
@@ -25,4 +189,3 @@ body {
     text-wrap: balance;
   }
 }
-
