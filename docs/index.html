@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradeMasterPro - Naucz sie tradingu od ekspertow</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --background: #0d1117;
@@ -412,6 +412,418 @@
         @keyframes candleGrow {
             0%, 100% { transform: scaleY(1); }
             50% { transform: scaleY(0.7); }
+        }
+
+        /* Trading Line Animation */
+        .trading-line {
+            position: absolute;
+            bottom: 30%;
+            left: 0;
+            right: 0;
+            height: 60%;
+            overflow: hidden;
+        }
+
+        .trading-line svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .trading-line path {
+            fill: none;
+            stroke: url(#lineGradient);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 3s ease-out forwards;
+        }
+
+        .trading-line .glow {
+            filter: blur(4px);
+            opacity: 0.5;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Price Ticker */
+        .price-ticker {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 0;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 3rem;
+            animation: tickerScroll 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .ticker-symbol {
+            color: white;
+            font-weight: 600;
+        }
+
+        .ticker-price {
+            color: var(--text-muted);
+        }
+
+        .ticker-change {
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .ticker-change.up {
+            background: rgba(0, 210, 106, 0.2);
+            color: var(--accent-green);
+        }
+
+        .ticker-change.down {
+            background: rgba(255, 71, 87, 0.2);
+            color: var(--accent-red);
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Floating Price Bubbles */
+        .floating-prices {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .price-bubble {
+            position: absolute;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            opacity: 0;
+            animation: floatUp 4s ease-out infinite;
+        }
+
+        .price-bubble.green {
+            background: rgba(0, 210, 106, 0.2);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 210, 106, 0.3);
+        }
+
+        .price-bubble.red {
+            background: rgba(255, 71, 87, 0.2);
+            color: var(--accent-red);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-120px) scale(0.8);
+            }
+        }
+
+        /* Buy/Sell Signals */
+        .trade-signals {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .trade-signal {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: signalPop 3s ease-out infinite;
+        }
+
+        .trade-signal.buy {
+            background: var(--accent-green);
+            color: black;
+        }
+
+        .trade-signal.sell {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .trade-signal svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        @keyframes signalPop {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            10%, 90% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Pulsing Dot */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse-dot::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            opacity: 0;
+            animation: pulseRing 2s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.5); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Counter Animation */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Card Entrance Animation */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .course-card:nth-child(1) { animation-delay: 0.1s; }
+        .course-card:nth-child(2) { animation-delay: 0.2s; }
+
+        /* Glowing Border Animation */
+        @keyframes borderPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.4); }
+            50% { box-shadow: 0 0 20px 5px rgba(0, 210, 106, 0.2); }
+        }
+
+        .glow-border {
+            animation: borderPulse 3s ease-in-out infinite;
+        }
+
+        /* Typing Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--accent-green);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Market Status Indicator */
+        .market-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 210, 106, 0.1);
+            border: 1px solid rgba(0, 210, 106, 0.3);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .market-status .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Profit Counter Animation */
+        .profit-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Number Scroll Animation */
+        .scroll-number {
+            display: inline-block;
+            overflow: hidden;
+            height: 1em;
+        }
+
+        .scroll-number span {
+            display: block;
+            animation: scrollUp 0.5s ease-out forwards;
+        }
+
+        @keyframes scrollUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Live Badge */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid var(--accent-red);
+            border-radius: 4px;
+            color: var(--accent-red);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .live-badge .rec-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            animation: recPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes recPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Shake Animation for Alerts */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Success Checkmark Animation */
+        .success-check {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .success-check svg {
+            width: 30px;
+            height: 30px;
+            stroke: black;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: drawCheck 0.5s ease-out 0.3s forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Gradient Text Animation */
+        .animated-gradient {
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-gold), var(--accent-green));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .profit-float {
@@ -1442,14 +1854,38 @@
 
     <!-- Home Page -->
     <div class="page active" id="page-home">
+        <!-- Price Ticker -->
+        <div class="price-ticker" style="position: fixed; top: 64px; z-index: 999;">
+            <div class="ticker-content" id="priceTicker">
+                <div class="ticker-item"><span class="ticker-symbol">EUR/USD</span><span class="ticker-price" id="price-eurusd">1.0847</span><span class="ticker-change up">+0.12%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">GBP/USD</span><span class="ticker-price">1.2634</span><span class="ticker-change up">+0.08%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">BTC/USD</span><span class="ticker-price" id="price-btc">43,250</span><span class="ticker-change up">+2.34%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">ETH/USD</span><span class="ticker-price">2,285</span><span class="ticker-change down">-0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">USD/JPY</span><span class="ticker-price">148.52</span><span class="ticker-change up">+0.21%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">XAU/USD</span><span class="ticker-price" id="price-gold">2,048</span><span class="ticker-change up">+0.67%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">SPX500</span><span class="ticker-price">4,782</span><span class="ticker-change up">+0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">NAS100</span><span class="ticker-price">16,845</span><span class="ticker-change down">-0.12%</span></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="ticker-item"><span class="ticker-symbol">EUR/USD</span><span class="ticker-price">1.0847</span><span class="ticker-change up">+0.12%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">GBP/USD</span><span class="ticker-price">1.2634</span><span class="ticker-change up">+0.08%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">BTC/USD</span><span class="ticker-price">43,250</span><span class="ticker-change up">+2.34%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">ETH/USD</span><span class="ticker-price">2,285</span><span class="ticker-change down">-0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">USD/JPY</span><span class="ticker-price">148.52</span><span class="ticker-change up">+0.21%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">XAU/USD</span><span class="ticker-price">2,048</span><span class="ticker-change up">+0.67%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">SPX500</span><span class="ticker-price">4,782</span><span class="ticker-change up">+0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">NAS100</span><span class="ticker-price">16,845</span><span class="ticker-change down">-0.12%</span></div>
+            </div>
+        </div>
+
         <!-- Hero -->
-        <section class="hero">
+        <section class="hero" style="padding-top: 10rem;">
             <div class="hero-content">
                 <div>
+                    <div class="market-status"><span class="dot"></span> Rynki otwarte - sesja europejska</div>
                     <div class="hero-badge">Nowy kurs 2025 dostepny</div>
                     <h1>
                         Zarabiaj na rynkach
-                        <span class="gradient-text">jak profesjonalisci</span>
+                        <span class="animated-gradient">jak profesjonalisci</span>
                     </h1>
                     <p>Dolacz do ponad 2,800 traderow, ktorzy zmienili swoje podejscie do tradingu dzieki sprawdzonym strategiom i wsparciu ekspertow.</p>
                     <div class="hero-buttons">
@@ -1486,6 +1922,25 @@
                             <span class="screenshot-title">TradingView - EUR/USD</span>
                         </div>
                         <div class="screenshot-body">
+                            <!-- Animated Trading Line -->
+                            <div class="trading-line">
+                                <svg viewBox="0 0 400 200" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#00d26a"/>
+                                            <stop offset="50%" style="stop-color:#ffd700"/>
+                                            <stop offset="100%" style="stop-color:#00d26a"/>
+                                        </linearGradient>
+                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#00d26a;stop-opacity:0.3"/>
+                                            <stop offset="100%" style="stop-color:#00d26a;stop-opacity:0"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path class="glow" d="M0,150 Q50,120 100,130 T200,80 T300,100 T400,60"/>
+                                    <path d="M0,150 Q50,120 100,130 T200,80 T300,100 T400,60"/>
+                                </svg>
+                            </div>
+                            <!-- Animated Candles -->
                             <div class="chart-placeholder">
                                 <div class="chart-candles">
                                     <div class="candle"></div>
@@ -1496,13 +1951,31 @@
                                     <div class="candle"></div>
                                     <div class="candle"></div>
                                     <div class="candle"></div>
+                                    <div class="candle"></div>
+                                    <div class="candle red"></div>
+                                    <div class="candle"></div>
+                                    <div class="candle"></div>
                                 </div>
                             </div>
+                            <!-- Floating Price Bubbles -->
+                            <div class="floating-prices" id="floatingPrices"></div>
+                            <!-- Trade Signals -->
+                            <div class="trade-signals" id="tradeSignals"></div>
                         </div>
                     </div>
-                    <div class="profit-float">
+                    <!-- Live Badge -->
+                    <div class="live-badge" style="position: absolute; top: -0.5rem; right: 1rem;">
+                        <span class="rec-dot"></span> LIVE
+                    </div>
+                    <!-- Profit Float with Animation -->
+                    <div class="profit-float glow-border">
                         <div class="profit-float-label">Dzisiejszy zysk</div>
-                        <div class="profit-float-value">+$2,847</div>
+                        <div class="profit-float-value profit-counter" id="profitCounter">+$2,847</div>
+                    </div>
+                    <!-- Second Float - Win Rate -->
+                    <div class="profit-float" style="bottom: -1rem; left: auto; right: -1rem; border-color: var(--accent-gold);">
+                        <div class="profit-float-label">Win Rate</div>
+                        <div class="profit-float-value" style="color: var(--accent-gold);" id="winRateCounter">87%</div>
                     </div>
                 </div>
             </div>
@@ -2549,7 +3022,205 @@
                     if (e.target === overlay) overlay.classList.remove('active');
                 });
             });
+            // Initialize trading animations
+            initTradingAnimations();
         });
+
+        // ===========================================
+        // TRADING ANIMATIONS
+        // ===========================================
+        function initTradingAnimations() {
+            // Floating Price Bubbles
+            createFloatingPrices();
+            setInterval(createFloatingPrices, 3000);
+
+            // Trade Signals
+            createTradeSignals();
+            setInterval(createTradeSignals, 4000);
+
+            // Animate counters
+            animateCounter('profitCounter', 2847, '+$', '');
+            animateCounter('winRateCounter', 87, '', '%');
+
+            // Update ticker prices randomly
+            setInterval(updateTickerPrices, 2000);
+
+            // Intersection Observer for scroll animations
+            initScrollAnimations();
+        }
+
+        function createFloatingPrices() {
+            const container = document.getElementById('floatingPrices');
+            if (!container) return;
+
+            const prices = ['+12.5', '-8.3', '+45.2', '+23.7', '-15.1', '+67.8', '+5.4', '-3.2'];
+            const isGreen = Math.random() > 0.3;
+            const price = prices[Math.floor(Math.random() * prices.length)];
+
+            const bubble = document.createElement('div');
+            bubble.className = `price-bubble ${isGreen ? 'green' : 'red'}`;
+            bubble.textContent = `${isGreen ? '+' : ''}${(Math.random() * 100).toFixed(1)} pips`;
+            bubble.style.left = `${10 + Math.random() * 80}%`;
+            bubble.style.bottom = '10%';
+            bubble.style.animationDelay = `${Math.random() * 0.5}s`;
+
+            container.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 4000);
+        }
+
+        function createTradeSignals() {
+            const container = document.getElementById('tradeSignals');
+            if (!container) return;
+
+            const isBuy = Math.random() > 0.4;
+            const signal = document.createElement('div');
+            signal.className = `trade-signal ${isBuy ? 'buy' : 'sell'}`;
+            signal.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="${isBuy ? 'M7 14l5-5 5 5' : 'M7 10l5 5 5-5'}"/>
+                </svg>
+                ${isBuy ? 'BUY' : 'SELL'}
+            `;
+            signal.style.left = `${20 + Math.random() * 60}%`;
+            signal.style.top = `${20 + Math.random() * 50}%`;
+            signal.style.animationDelay = `${Math.random() * 0.3}s`;
+
+            container.appendChild(signal);
+
+            setTimeout(() => signal.remove(), 3000);
+        }
+
+        function animateCounter(elementId, targetValue, prefix, suffix) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            let currentValue = 0;
+            const duration = 2000;
+            const steps = 60;
+            const increment = targetValue / steps;
+            const stepDuration = duration / steps;
+
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = `${prefix}${Math.floor(currentValue).toLocaleString()}${suffix}`;
+            }, stepDuration);
+        }
+
+        function updateTickerPrices() {
+            const tickerItems = document.querySelectorAll('.ticker-price');
+            tickerItems.forEach(item => {
+                const currentText = item.textContent;
+                const currentValue = parseFloat(currentText.replace(/,/g, ''));
+                if (!isNaN(currentValue)) {
+                    const change = (Math.random() - 0.5) * (currentValue * 0.001);
+                    const newValue = currentValue + change;
+                    if (currentValue > 1000) {
+                        item.textContent = Math.floor(newValue).toLocaleString();
+                    } else if (currentValue > 100) {
+                        item.textContent = newValue.toFixed(2);
+                    } else {
+                        item.textContent = newValue.toFixed(4);
+                    }
+                    // Flash effect
+                    item.style.color = change > 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+                    setTimeout(() => item.style.color = '', 500);
+                }
+            });
+        }
+
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                observer.observe(card);
+            });
+
+            // Observe testimonial cards
+            document.querySelectorAll('.testimonial-card').forEach(card => {
+                card.style.opacity = '0';
+                observer.observe(card);
+            });
+
+            // Observe course cards
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.style.opacity = '0';
+                observer.observe(card);
+            });
+
+            // Observe stat items
+            document.querySelectorAll('.stat-item').forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+        }
+
+        // Animate stats when visible
+        let statsAnimated = false;
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    animateStatValues();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        function animateStatValues() {
+            const stats = [
+                { selector: '.stat-value:nth-of-type(1)', value: 2847, suffix: '+' },
+                { selector: '.stat-value:nth-of-type(2)', value: 89, suffix: '%' },
+            ];
+
+            document.querySelectorAll('.stat-value').forEach((el, i) => {
+                const text = el.textContent;
+                const numMatch = text.match(/[\d,]+/);
+                if (numMatch) {
+                    const targetNum = parseInt(numMatch[0].replace(/,/g, ''));
+                    const prefix = text.replace(/[\d,]+.*/, '');
+                    const suffix = text.replace(/.*[\d,]+/, '');
+
+                    let current = 0;
+                    const duration = 2000;
+                    const steps = 50;
+                    const increment = targetNum / steps;
+
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= targetNum) {
+                            current = targetNum;
+                            clearInterval(timer);
+                        }
+                        el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+                    }, duration / steps);
+                }
+            });
+        }
+
+        // Start stats observer
+        setTimeout(() => {
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) statsObserver.observe(statsSection);
+        }, 100);
     </script>
 </body>
 </html>
