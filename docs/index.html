@@ -828,6 +828,115 @@
             color: var(--accent);
         }
 
+        /* Trading Background Animation */
+        .trading-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+
+        .trading-line {
+            position: absolute;
+            bottom: 20%;
+            left: 0;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: tradingLine 20s linear infinite;
+        }
+
+        @keyframes tradingLine {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(29, 155, 240, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(29, 155, 240, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .candle {
+            position: absolute;
+            width: 6px;
+            border-radius: 1px;
+            animation: candleFloat 15s ease-in-out infinite;
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            background: inherit;
+        }
+
+        .candle.green {
+            background: rgba(0, 186, 124, 0.15);
+        }
+
+        .candle.green::before {
+            background: rgba(0, 186, 124, 0.1);
+        }
+
+        .candle.red {
+            background: rgba(244, 33, 46, 0.15);
+        }
+
+        .candle.red::before {
+            background: rgba(244, 33, 46, 0.1);
+        }
+
+        @keyframes candleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(5px);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-25px) translateX(3px);
+                opacity: 0.6;
+            }
+        }
+
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(29, 155, 240, 0.1);
+            animation: pulse 4s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-content {
@@ -918,6 +1027,25 @@
     </style>
 </head>
 <body>
+    <!-- Trading Background Animation -->
+    <div class="trading-bg">
+        <div class="grid-pattern"></div>
+        <div class="trading-line"></div>
+        <div class="trading-line" style="bottom: 40%; animation-delay: -5s;"></div>
+        <div class="trading-line" style="bottom: 60%; animation-delay: -10s;"></div>
+        <div class="candle green" style="left: 10%; top: 20%; height: 40px; animation-delay: 0s;"></div>
+        <div class="candle red" style="left: 25%; top: 35%; height: 30px; animation-delay: -3s;"></div>
+        <div class="candle green" style="left: 40%; top: 50%; height: 50px; animation-delay: -6s;"></div>
+        <div class="candle red" style="left: 55%; top: 25%; height: 35px; animation-delay: -9s;"></div>
+        <div class="candle green" style="left: 70%; top: 45%; height: 45px; animation-delay: -12s;"></div>
+        <div class="candle red" style="left: 85%; top: 30%; height: 25px; animation-delay: -2s;"></div>
+        <div class="candle green" style="left: 15%; top: 65%; height: 35px; animation-delay: -7s;"></div>
+        <div class="candle red" style="left: 60%; top: 70%; height: 40px; animation-delay: -4s;"></div>
+        <div class="pulse-circle" style="left: 20%; top: 30%; width: 100px; height: 100px;"></div>
+        <div class="pulse-circle" style="left: 70%; top: 60%; width: 80px; height: 80px; animation-delay: -2s;"></div>
+        <div class="pulse-circle" style="left: 50%; top: 40%; width: 120px; height: 120px; animation-delay: -1s;"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-content">
@@ -948,20 +1076,20 @@
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Naucz sie tradingu od podstaw</h1>
-                    <p>Praktyczne kursy online z analizy technicznej i zarzadzania ryzykiem. Ucz sie we wlasnym tempie z dostepem do materialow 24/7.</p>
+                    <h1>Naucz się tradingu od podstaw</h1>
+                    <p>Praktyczne kursy online z analizy technicznej i zarządzania ryzykiem. Ucz się we własnym tempie z dostępem do materiałów 24/7.</p>
                     <div class="hero-buttons">
                         <a href="#courses-section" class="btn btn-primary btn-lg">Zobacz kursy</a>
-                        <a href="#about-section" class="btn btn-secondary btn-lg">Dowiedz sie wiecej</a>
+                        <a href="#about-section" class="btn btn-secondary btn-lg">Dowiedz się więcej</a>
                     </div>
                     <div class="hero-note">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                        Dostep do materialow przez 12 miesiecy
+                        Dostęp do materiałów przez 12 miesięcy
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="chart-header">
-                        <span class="chart-title">Przykladowy wykres</span>
+                        <span class="chart-title">Przykładowy wykres</span>
                         <span class="chart-badge">Demo</span>
                     </div>
                     <div class="chart-area">
@@ -987,7 +1115,7 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-value">450+</div>
-                    <div class="stat-label">Ukonczonych kursow</div>
+                    <div class="stat-label">Ukończonych kursów</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">32</div>
@@ -995,11 +1123,11 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">12h</div>
-                    <div class="stat-label">Materialow wideo</div>
+                    <div class="stat-label">Materiałów wideo</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">4.6/5</div>
-                    <div class="stat-label">Srednia ocena</div>
+                    <div class="stat-label">Średnia ocena</div>
                 </div>
             </div>
         </section>
@@ -1007,39 +1135,39 @@
         <!-- Features -->
         <section class="section" id="about-section">
             <div class="section-header">
-                <h2 class="section-title">Czego sie nauczysz?</h2>
-                <p class="section-subtitle">Kursy obejmuja praktyczne aspekty tradingu, od podstaw po zaawansowane techniki.</p>
+                <h2 class="section-title">Czego się nauczysz?</h2>
+                <p class="section-subtitle">Kursy obejmują praktyczne aspekty tradingu, od podstaw po zaawansowane techniki.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
                     <h3 class="feature-title">Analiza techniczna</h3>
-                    <p class="feature-description">Nauka czytania wykresow, rozpoznawania formacji cenowych i wykorzystywania wskaznikow technicznych.</p>
+                    <p class="feature-description">Nauka czytania wykresów, rozpoznawania formacji cenowych i wykorzystywania wskaźników technicznych.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚖️</div>
-                    <h3 class="feature-title">Zarzadzanie ryzykiem</h3>
-                    <p class="feature-description">Jak prawidlowo ustawiac stop-loss, okreslac wielkosc pozycji i chronic kapital.</p>
+                    <h3 class="feature-title">Zarządzanie ryzykiem</h3>
+                    <p class="feature-description">Jak prawidłowo ustawiać stop-loss, określać wielkość pozycji i chronić kapitał.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
                     <h3 class="feature-title">Psychologia tradingu</h3>
-                    <p class="feature-description">Radzenie sobie z emocjami, dyscyplina i budowanie odpowiedniego podejscia do rynku.</p>
+                    <p class="feature-description">Radzenie sobie z emocjami, dyscyplina i budowanie odpowiedniego podejścia do rynku.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📋</div>
                     <h3 class="feature-title">Plan tradingowy</h3>
-                    <p class="feature-description">Tworzenie i testowanie wlasnej strategii tradingowej krok po kroku.</p>
+                    <p class="feature-description">Tworzenie i testowanie własnej strategii tradingowej krok po kroku.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💻</div>
-                    <h3 class="feature-title">Narzedzia i platformy</h3>
-                    <p class="feature-description">Praktyczna nauka obslugi popularnych platform tradingowych i narzedzi analitycznych.</p>
+                    <h3 class="feature-title">Narzędzia i platformy</h3>
+                    <p class="feature-description">Praktyczna nauka obsługi popularnych platform tradingowych i narzędzi analitycznych.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3 class="feature-title">Analiza rynku</h3>
-                    <p class="feature-description">Jak analizowac rozne rynki - forex, akcje, indeksy i kryptowaluty.</p>
+                    <p class="feature-description">Jak analizować różne rynki - forex, akcje, indeksy i kryptowaluty.</p>
                 </div>
             </div>
         </section>
@@ -1049,49 +1177,9 @@
             <div class="instructor-content">
                 <div class="instructor-avatar">👨‍💼</div>
                 <div>
-                    <h3 class="instructor-name">O prowadzacym</h3>
-                    <p class="instructor-title">Trader i edukator z wieloletnim doswiadczeniem</p>
-                    <p class="instructor-bio">Kursy prowadzone sa przez praktyka rynkow finansowych z ponad 8-letnim doswiadczeniem. Materialy oparte sa na realnych przykladach i praktycznych cwiczeniach, nie na teoretycznych obietnicach.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Opinie uczestnikow</h2>
-                <p class="section-subtitle">Co mowia osoby, ktore ukonczyly nasze kursy.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Dobrze ulozone materialy, jasne tlumaczenie. Wkoncu zrozumialem jak dziala analiza techniczna. Polecam osobom poczatkujacym."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">M</div>
-                        <div>
-                            <div class="testimonial-name">Michal</div>
-                            <div class="testimonial-role">Uczestnik kursu podstawowego</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Ceniona wartosc to praktyczne podejscie. Zadnych pustych obietnic, konkretna wiedza ktora mozna zastosowac. Warto zainwestowac w edukacje."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">A</div>
-                        <div>
-                            <div class="testimonial-name">Anna</div>
-                            <div class="testimonial-role">Uczestniczka kursu zaawansowanego</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Szukalem solidnego kursu bez typowego marketingu 'zarabiaj miliony'. Ten kurs jest rzeczowy i uczciwy w swoim przekazie."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">T</div>
-                        <div>
-                            <div class="testimonial-name">Tomasz</div>
-                            <div class="testimonial-role">Uczestnik kursu podstawowego</div>
-                        </div>
-                    </div>
+                    <h3 class="instructor-name">O prowadzącym</h3>
+                    <p class="instructor-title">Trader i edukator z wieloletnim doświadczeniem</p>
+                    <p class="instructor-bio">Kursy prowadzone są przez praktyka rynków finansowych z ponad 8-letnim doświadczeniem. Materiały oparte są na realnych przykładach i praktycznych ćwiczeniach, nie na teoretycznych obietnicach.</p>
                 </div>
             </div>
         </section>
@@ -1099,7 +1187,7 @@
         <!-- Courses -->
         <section class="section" id="courses-section" style="background: var(--background-secondary); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
             <div class="section-header">
-                <h2 class="section-title">Dostepne kursy</h2>
+                <h2 class="section-title">Dostępne kursy</h2>
                 <p class="section-subtitle">Wybierz kurs dopasowany do Twojego poziomu zaawansowania.</p>
             </div>
             <div class="courses-grid">
@@ -1109,15 +1197,15 @@
                         <h3 class="course-title">Trading od podstaw</h3>
                     </div>
                     <div class="course-content">
-                        <p class="course-description">Kurs dla osob poczatkujacych. Nauczysz sie podstaw analizy technicznej, zarzadzania ryzykiem i korzystania z platform tradingowych.</p>
+                        <p class="course-description">Kurs dla osób początkujących. Nauczysz się podstaw analizy technicznej, zarządzania ryzykiem i korzystania z platform tradingowych.</p>
                         <div class="course-meta">
                             <span>📚 12 lekcji</span>
                             <span>⏱️ 6 godzin</span>
-                            <span>📝 Materialy PDF</span>
+                            <span>📝 Materiały PDF</span>
                         </div>
                         <div class="course-footer">
-                            <div class="course-price">299 zl <span>/ dostep 12 mies.</span></div>
-                            <button class="btn btn-primary" onclick="showCourseDetails('basic')">Szczegoly</button>
+                            <div class="course-price">299 zł <span>/ dostęp 12 mies.</span></div>
+                            <button class="btn btn-primary" onclick="showCourseDetails('basic')">Szczegóły</button>
                         </div>
                     </div>
                 </div>
@@ -1127,15 +1215,15 @@
                         <h3 class="course-title">Strategie i analiza</h3>
                     </div>
                     <div class="course-content">
-                        <p class="course-description">Dla osob znajacych podstawy. Zaawansowane formacje, strategie day tradingu, analiza wolumenu i budowanie systemu tradingowego.</p>
+                        <p class="course-description">Dla osób znających podstawy. Zaawansowane formacje, strategie day tradingu, analiza wolumenu i budowanie systemu tradingowego.</p>
                         <div class="course-meta">
                             <span>📚 20 lekcji</span>
                             <span>⏱️ 10 godzin</span>
-                            <span>📝 Materialy PDF</span>
+                            <span>📝 Materiały PDF</span>
                         </div>
                         <div class="course-footer">
-                            <div class="course-price">499 zl <span>/ dostep 12 mies.</span></div>
-                            <button class="btn btn-primary" onclick="showCourseDetails('advanced')">Szczegoly</button>
+                            <div class="course-price">499 zł <span>/ dostęp 12 mies.</span></div>
+                            <button class="btn btn-primary" onclick="showCourseDetails('advanced')">Szczegóły</button>
                         </div>
                     </div>
                 </div>
@@ -1145,7 +1233,7 @@
         <!-- FAQ -->
         <section class="section" id="faq-section">
             <div class="section-header">
-                <h2 class="section-title">Czeste pytania</h2>
+                <h2 class="section-title">Częste pytania</h2>
             </div>
             <div class="faq-list">
                 <div class="faq-item">
@@ -1153,35 +1241,35 @@
                         Czy kurs gwarantuje zyski z tradingu?
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Nie. Zaden kurs nie moze gwarantowac zyskow. Trading wiaze sie z ryzykiem utraty kapitalu. Kurs dostarcza wiedze i narzedzia, ale wyniki zaleza od wielu czynnikow, w tym od rynku i indywidualnych decyzji.</div>
+                    <div class="faq-answer">Nie. Żaden kurs nie może gwarantować zysków. Trading wiąże się z ryzykiem utraty kapitału. Kurs dostarcza wiedzę i narzędzia, ale wyniki zależą od wielu czynników, w tym od rynku i indywidualnych decyzji.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Jak dlugo mam dostep do materialow?
+                        Jak długo mam dostęp do materiałów?
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Dostep do materialow trwa 12 miesiecy od momentu zakupu. W tym czasie mozesz wracac do lekcji dowolna ilosc razy.</div>
+                    <div class="faq-answer">Dostęp do materiałów trwa 12 miesięcy od momentu zakupu. W tym czasie możesz wracać do lekcji dowolną ilość razy.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Czy potrzebuje wczesniejszego doswiadczenia?
+                        Czy potrzebuję wcześniejszego doświadczenia?
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Kurs podstawowy jest przeznaczony dla osob poczatkujacych - nie wymagamy wczesniejszego doswiadczenia. Kurs zaawansowany wymaga znajomosci podstaw.</div>
+                    <div class="faq-answer">Kurs podstawowy jest przeznaczony dla osób początkujących - nie wymagamy wcześniejszego doświadczenia. Kurs zaawansowany wymaga znajomości podstaw.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Czy moge uzyskac zwrot pieniedzy?
+                        Czy mogę uzyskać zwrot pieniędzy?
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Tak, oferujemy 14-dniowa gwarancje zwrotu. Jesli kurs nie spelni Twoich oczekiwan, skontaktuj sie z nami w ciagu 14 dni od zakupu.</div>
+                    <div class="faq-answer">Tak, oferujemy 14-dniową gwarancję zwrotu. Jeśli kurs nie spełni Twoich oczekiwań, skontaktuj się z nami w ciągu 14 dni od zakupu.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Ile kapitalu potrzebuje na start?
+                        Ile kapitału potrzebuję na start?
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Na poczatku zalecamy cwiczenie na kontach demo (bez ryzyka prawdziwych pieniedzy). Gdy zdecydujesz sie tradowac realnie, zacznij od kwoty, ktorej ewentualna utrata nie wplynie znaczaco na Twoja sytuacje finansowa.</div>
+                    <div class="faq-answer">Na początku zalecamy ćwiczenie na kontach demo (bez ryzyka prawdziwych pieniędzy). Gdy zdecydujesz się tradować realnie, zacznij od kwoty, której ewentualna utrata nie wpłynie znacząco na Twoją sytuację finansową.</div>
                 </div>
             </div>
         </section>
@@ -1189,17 +1277,17 @@
         <!-- CTA -->
         <section class="cta-section">
             <div class="cta-content">
-                <h2 class="cta-title">Zacznij nauke juz dzisiaj</h2>
-                <p class="cta-subtitle">Dołacz do kursu i rozwijaj swoje umiejetnosci tradingowe we wlasnym tempie.</p>
-                <a href="#courses-section" class="btn btn-primary btn-lg">Zobacz dostepne kursy</a>
+                <h2 class="cta-title">Zacznij naukę już dzisiaj</h2>
+                <p class="cta-subtitle">Dołącz do kursu i rozwijaj swoje umiejętności tradingowe we własnym tempie.</p>
+                <a href="#courses-section" class="btn btn-primary btn-lg">Zobacz dostępne kursy</a>
             </div>
         </section>
 
         <!-- Disclaimer -->
         <section class="disclaimer">
             <div class="disclaimer-content">
-                <div class="disclaimer-title">Wazne zastrzezenie</div>
-                <p class="disclaimer-text">Trading na rynkach finansowych wiaze sie z wysokim ryzykiem utraty kapitalu. Wyniki osiagane w przeszlosci nie gwarantuja wynikow w przyszlosci. Przed podjęciem decyzji inwestycyjnych nalezy rozwazyc swoja sytuacje finansowa i w razie potrzeby skonsultowac sie z niezaleznym doradca finansowym. Materialy edukacyjne nie stanowia rekomendacji inwestycyjnych.</p>
+                <div class="disclaimer-title">Ważne zastrzeżenie</div>
+                <p class="disclaimer-text">Trading na rynkach finansowych wiąże się z wysokim ryzykiem utraty kapitału. Wyniki osiągane w przeszłości nie gwarantują wyników w przyszłości. Przed podjęciem decyzji inwestycyjnych należy rozważyć swoją sytuację finansową i w razie potrzeby skonsultować się z niezależnym doradcą finansowym. Materiały edukacyjne nie stanowią rekomendacji inwestycyjnych.</p>
             </div>
         </section>
 
@@ -1212,7 +1300,7 @@
                 </a>
                 <div class="footer-links">
                     <a href="#">Regulamin</a>
-                    <a href="#">Polityka prywatnosci</a>
+                    <a href="#">Polityka prywatności</a>
                     <a href="#">Kontakt</a>
                 </div>
                 <div class="footer-copy">© 2025 TradeMaster Academy</div>
@@ -1232,16 +1320,16 @@
                     <div class="value" id="purchasedCoursesCount">0</div>
                 </div>
                 <div class="dashboard-stat">
-                    <h3>Ukonczone lekcje</h3>
+                    <h3>Ukończone lekcje</h3>
                     <div class="value" id="completedLessonsCount">0</div>
                 </div>
                 <div class="dashboard-stat">
-                    <h3>Postep</h3>
+                    <h3>Postęp</h3>
                     <div class="value" id="progressPercent">0%</div>
                 </div>
             </div>
             <div id="userCourses">
-                <p style="color: var(--text-muted);">Nie masz jeszcze zadnych kursow. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przegladaj kursy</a></p>
+                <p style="color: var(--text-muted);">Nie masz jeszcze żadnych kursów. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przeglądaj kursy</a></p>
             </div>
         </div>
     </div>
@@ -1253,7 +1341,7 @@
         </div>
         <div class="dashboard-content">
             <div id="courseContent">
-                <p style="color: var(--text-muted);">Ladowanie...</p>
+                <p style="color: var(--text-muted);">Ładowanie...</p>
             </div>
         </div>
     </div>
@@ -1264,7 +1352,7 @@
             <h1>Panel administratora</h1>
         </div>
         <div class="dashboard-content">
-            <p style="color: var(--text-muted);">Panel administracyjny dostepny dla zalogowanych administratorow.</p>
+            <p style="color: var(--text-muted);">Panel administracyjny dostępny dla zalogowanych administratorów.</p>
         </div>
     </div>
 
@@ -1272,7 +1360,7 @@
     <div class="modal-overlay" id="modal-login">
         <div class="modal">
             <div class="modal-header">
-                <h2 class="modal-title">Zaloguj sie</h2>
+                <h2 class="modal-title">Zaloguj się</h2>
                 <button class="modal-close" onclick="hideModal('login')">&times;</button>
             </div>
             <form onsubmit="handleLogin(event)">
@@ -1281,13 +1369,13 @@
                     <input type="email" id="loginEmail" required placeholder="twoj@email.pl">
                 </div>
                 <div class="form-group">
-                    <label>Haslo</label>
-                    <input type="password" id="loginPassword" required placeholder="Twoje haslo">
+                    <label>Hasło</label>
+                    <input type="password" id="loginPassword" required placeholder="Twoje hasło">
                 </div>
                 <div class="form-error" id="loginError"></div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Zaloguj</button>
                 <div class="form-footer">
-                    <p>Nie masz konta? <a onclick="hideModal('login'); showModal('register')">Zarejestruj sie</a></p>
+                    <p>Nie masz konta? <a onclick="hideModal('login'); showModal('register')">Zarejestruj się</a></p>
                 </div>
             </form>
             <div class="demo-info">
@@ -1300,26 +1388,26 @@
     <div class="modal-overlay" id="modal-register">
         <div class="modal">
             <div class="modal-header">
-                <h2 class="modal-title">Zaloz konto</h2>
+                <h2 class="modal-title">Załóż konto</h2>
                 <button class="modal-close" onclick="hideModal('register')">&times;</button>
             </div>
             <form onsubmit="handleRegister(event)">
                 <div class="form-group">
-                    <label>Imie</label>
-                    <input type="text" id="registerName" required placeholder="Twoje imie">
+                    <label>Imię</label>
+                    <input type="text" id="registerName" required placeholder="Twoje imię">
                 </div>
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="registerEmail" required placeholder="twoj@email.pl">
                 </div>
                 <div class="form-group">
-                    <label>Haslo</label>
-                    <input type="password" id="registerPassword" required minlength="6" placeholder="Min. 6 znakow">
+                    <label>Hasło</label>
+                    <input type="password" id="registerPassword" required minlength="6" placeholder="Min. 6 znaków">
                 </div>
                 <div class="form-error" id="registerError"></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Zaloz konto</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Załóż konto</button>
                 <div class="form-footer">
-                    <p>Masz konto? <a onclick="hideModal('register'); showModal('login')">Zaloguj sie</a></p>
+                    <p>Masz konto? <a onclick="hideModal('register'); showModal('login')">Zaloguj się</a></p>
                 </div>
             </form>
         </div>
@@ -1333,10 +1421,10 @@
                 <button class="modal-close" onclick="hideModal('payment')">&times;</button>
             </div>
             <div id="paymentInfo">
-                <p style="margin-bottom: 1rem; color: var(--text-muted);">Szczegoly zakupu pojawia sie tutaj.</p>
+                <p style="margin-bottom: 1rem; color: var(--text-muted);">Szczegóły zakupu pojawią się tutaj.</p>
             </div>
-            <button class="btn btn-primary" style="width: 100%;" onclick="processPayment()">Zaplac</button>
-            <p style="text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">Platnosc jest bezpieczna i szyfrowana</p>
+            <button class="btn btn-primary" style="width: 100%;" onclick="processPayment()">Zapłać</button>
+            <p style="text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">Płatność jest bezpieczna i szyfrowana</p>
         </div>
     </div>
 
@@ -1409,7 +1497,7 @@
                 updateNav();
                 showPage('dashboard');
             } else {
-                document.getElementById('loginError').textContent = 'Nieprawidlowy email lub haslo';
+                document.getElementById('loginError').textContent = 'Nieprawidłowy email lub hasło';
             }
         }
 
@@ -1420,7 +1508,7 @@
             const password = document.getElementById('registerPassword').value;
             const users = DB.getUsers();
             if (users.find(u => u.email === email)) {
-                document.getElementById('registerError').textContent = 'Email jest juz zarejestrowany';
+                document.getElementById('registerError').textContent = 'Email jest już zarejestrowany';
                 return;
             }
             const newUser = { id: 'user-' + Date.now(), email, password, name, role: 'USER' };
@@ -1460,7 +1548,7 @@
             purchases.push({ userId: currentUser.id, courseId: currentCourse.id, date: new Date().toISOString() });
             DB.savePurchases(purchases);
             hideModal('payment');
-            alert('Dziekujemy za zakup! Kurs jest teraz dostepny w zakladce "Moje kursy".');
+            alert('Dziękujemy za zakup! Kurs jest teraz dostępny w zakładce "Moje kursy".');
             showPage('dashboard');
         }
 
@@ -1481,7 +1569,7 @@
                     </div>`;
                 }).join('');
             } else {
-                container.innerHTML = `<p style="color: var(--text-muted);">Nie masz jeszcze zadnych kursow. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przegladaj kursy</a></p>`;
+                container.innerHTML = `<p style="color: var(--text-muted);">Nie masz jeszcze żadnych kursów. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przeglądaj kursy</a></p>`;
             }
         }
 
