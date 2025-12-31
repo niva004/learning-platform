@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The SHARKS - Profesjonalne szkolenia tradingowe</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2300d4ff' d='M28 16c0-2-4-6-8-6s-4 2-6 2-2-2-6-2-8 4-8 6c0 1 1 2 2 2 2 0 3-1 4-1s2 2 4 2c1 0 2-1 4-1s3 1 4 1c2 0 3-2 4-2s2 1 4 1c1 0 2-1 2-2z'/%3E%3Cpath fill='%2300d4ff' d='M20 8l4-4v6z'/%3E%3Ccircle fill='%23020c1b' cx='10' cy='15' r='1'/%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -76,14 +76,16 @@
         }
 
         .logo-icon {
-            width: 28px;
-            height: 28px;
-            background: var(--accent);
-            border-radius: 6px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.875rem;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
         }
 
         .nav-links {
@@ -793,8 +795,8 @@
             color: var(--accent);
         }
 
-        /* Ocean Background Animation */
-        .ocean-bg {
+        /* Wall Street Background */
+        .wallstreet-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -803,160 +805,224 @@
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(180deg, #020c1b 0%, #041525 50%, #0a1f35 100%);
+            background: linear-gradient(180deg, #020c1b 0%, #041525 40%, #0a1f35 100%);
         }
 
-        /* Ocean waves */
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 100px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='rgba(0,212,255,0.03)'/%3E%3C/svg%3E") repeat-x;
-            animation: waveMove 15s linear infinite;
-        }
-
-        .wave:nth-child(2) {
-            bottom: 10%;
-            animation-duration: 20s;
-            opacity: 0.5;
-        }
-
-        .wave:nth-child(3) {
-            bottom: 20%;
-            animation-duration: 25s;
-            animation-direction: reverse;
-            opacity: 0.3;
-        }
-
-        @keyframes waveMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Bubbles */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.4), rgba(0, 212, 255, 0.1));
-            animation: bubbleRise 8s ease-in infinite;
-            opacity: 0;
-        }
-
-        @keyframes bubbleRise {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
-        }
-
-        /* Swimming shark */
-        .shark {
-            position: absolute;
-            font-size: 40px;
-            animation: sharkSwim 20s linear infinite;
-            opacity: 0.15;
-            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
-        }
-
-        .shark.reverse {
-            animation: sharkSwimReverse 25s linear infinite;
-            transform: scaleX(-1);
-        }
-
-        @keyframes sharkSwim {
-            0% { left: -100px; top: 30%; }
-            25% { top: 35%; }
-            50% { top: 25%; }
-            75% { top: 32%; }
-            100% { left: 110%; top: 28%; }
-        }
-
-        @keyframes sharkSwimReverse {
-            0% { right: -100px; top: 60%; }
-            25% { top: 55%; }
-            50% { top: 65%; }
-            75% { top: 58%; }
-            100% { right: 110%; top: 62%; }
-        }
-
-        /* Light rays from surface */
-        .light-ray {
-            position: absolute;
-            top: 0;
-            width: 3px;
-            height: 60%;
-            background: linear-gradient(to bottom, rgba(0, 212, 255, 0.15), transparent);
-            transform-origin: top center;
-            animation: rayShimmer 4s ease-in-out infinite;
-        }
-
-        @keyframes rayShimmer {
-            0%, 100% { opacity: 0.3; transform: scaleY(1) rotate(-2deg); }
-            50% { opacity: 0.6; transform: scaleY(1.1) rotate(2deg); }
-        }
-
-        /* Ocean depth gradient overlay */
-        .depth-overlay {
+        /* Trading grid */
+        .trading-grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg,
-                transparent 0%,
-                rgba(0, 20, 40, 0.3) 50%,
-                rgba(0, 10, 25, 0.5) 100%);
-            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
         }
 
-        /* Floating particles (plankton) */
-        .particle {
+        /* Big shark silhouette */
+        .shark-silhouette {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(0, 212, 255, 0.4);
-            border-radius: 50%;
-            animation: particleFloat 10s ease-in-out infinite;
+            width: 600px;
+            height: 300px;
+            opacity: 0.03;
+            right: -100px;
+            top: 20%;
         }
 
-        @keyframes particleFloat {
-            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
-            25% { transform: translate(10px, -20px); opacity: 0.6; }
-            50% { transform: translate(-5px, -10px); opacity: 0.4; }
-            75% { transform: translate(15px, -25px); opacity: 0.5; }
+        .shark-silhouette svg {
+            width: 100%;
+            height: 100%;
         }
 
-        /* Price indicators styled as fish */
-        .price-float {
+        /* Candlestick chart in background */
+        .bg-candles {
             position: absolute;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 5%;
+            opacity: 0.15;
+        }
+
+        .bg-candle {
+            width: 12px;
+            position: relative;
+            animation: candlePulse 3s ease-in-out infinite;
+        }
+
+        .bg-candle::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            top: -15px;
+        }
+
+        .bg-candle::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            bottom: -15px;
+        }
+
+        .bg-candle.green {
+            background: linear-gradient(to top, #00e676, #00c853);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+        }
+
+        .bg-candle.green::before, .bg-candle.green::after {
+            background: #00e676;
+        }
+
+        .bg-candle.red {
+            background: linear-gradient(to bottom, #ff5252, #d32f2f);
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.3);
+        }
+
+        .bg-candle.red::before, .bg-candle.red::after {
+            background: #ff5252;
+        }
+
+        @keyframes candlePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Swimming financial shark */
+        .shark-swim {
+            position: absolute;
+            animation: sharkCruise 25s linear infinite;
+            opacity: 0.08;
+        }
+
+        .shark-swim svg {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.5));
+        }
+
+        .shark-swim.reverse {
+            animation: sharkCruiseReverse 30s linear infinite;
+        }
+
+        .shark-swim.reverse svg {
+            transform: scaleX(-1);
+        }
+
+        @keyframes sharkCruise {
+            0% { left: -250px; top: 25%; }
+            25% { top: 30%; }
+            50% { top: 20%; }
+            75% { top: 28%; }
+            100% { left: 110%; top: 22%; }
+        }
+
+        @keyframes sharkCruiseReverse {
+            0% { right: -250px; top: 55%; }
+            25% { top: 50%; }
+            50% { top: 60%; }
+            75% { top: 52%; }
+            100% { right: 110%; top: 58%; }
+        }
+
+        /* Dollar signs floating */
+        .dollar-float {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(0, 212, 255, 0.1);
+            animation: dollarRise 15s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        @keyframes dollarRise {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Chart line animation */
+        .chart-line-anim {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            width: 200%;
+            height: 200px;
+            animation: chartScroll 20s linear infinite;
+        }
+
+        .chart-line-anim svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes chartScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Price indicators */
+        .price-tag {
+            position: absolute;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
             font-family: 'Inter', monospace;
-            animation: priceSwim 10s ease-in-out infinite;
-            backdrop-filter: blur(4px);
+            animation: priceMove 8s ease-in-out infinite;
+            backdrop-filter: blur(8px);
         }
 
-        .price-float.up {
-            background: rgba(0, 230, 118, 0.2);
+        .price-tag.up {
+            background: rgba(0, 230, 118, 0.15);
             color: #00e676;
-            border: 1px solid rgba(0, 230, 118, 0.4);
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
         }
 
-        .price-float.down {
-            background: rgba(255, 82, 82, 0.2);
+        .price-tag.up::before {
+            content: '▲ ';
+        }
+
+        .price-tag.down {
+            background: rgba(255, 82, 82, 0.15);
             color: #ff5252;
-            border: 1px solid rgba(255, 82, 82, 0.4);
-            box-shadow: 0 0 15px rgba(255, 82, 82, 0.2);
+            border: 1px solid rgba(255, 82, 82, 0.3);
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.2);
         }
 
-        @keyframes priceSwim {
-            0%, 100% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(15px) translateY(-10px); }
-            50% { transform: translateX(-10px) translateY(5px); }
-            75% { transform: translateX(10px) translateY(-5px); }
+        .price-tag.down::before {
+            content: '▼ ';
+        }
+
+        @keyframes priceMove {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Glowing accent lines */
+        .glow-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: glowMove 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes glowMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
         }
 
         /* Responsive */
@@ -1045,62 +1111,134 @@
     </style>
 </head>
 <body>
-    <!-- Ocean Background Animation -->
-    <div class="ocean-bg">
-        <!-- Light rays from surface -->
-        <div class="light-ray" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="light-ray" style="left: 25%; animation-delay: -1s;"></div>
-        <div class="light-ray" style="left: 40%; animation-delay: -2s;"></div>
-        <div class="light-ray" style="left: 55%; animation-delay: -0.5s;"></div>
-        <div class="light-ray" style="left: 70%; animation-delay: -1.5s;"></div>
-        <div class="light-ray" style="left: 85%; animation-delay: -2.5s;"></div>
+    <!-- Wall Street Background -->
+    <div class="wallstreet-bg">
+        <!-- Trading grid -->
+        <div class="trading-grid"></div>
 
-        <!-- Ocean waves -->
-        <div class="wave" style="bottom: 0;"></div>
-        <div class="wave" style="bottom: 5%;"></div>
-        <div class="wave" style="bottom: 10%;"></div>
+        <!-- Big shark silhouette -->
+        <div class="shark-silhouette">
+            <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M180 50C180 40 150 25 120 25C100 25 90 35 80 35C70 35 60 25 40 25C10 25 -10 40 5 60C15 70 30 70 50 60C60 55 70 60 80 70C90 80 100 80 110 80C120 80 130 80 140 70C150 60 160 55 170 60C185 70 195 65 198 55C200 50 180 50 180 50Z" fill="url(#sharkBgGrad)"/>
+                <path d="M140 20L170 5L165 30L140 20Z" fill="url(#sharkBgGrad)"/>
+                <circle cx="55" cy="48" r="4" fill="#00d4ff"/>
+                <defs>
+                    <linearGradient id="sharkBgGrad" x1="0" y1="50" x2="200" y2="50">
+                        <stop stop-color="#00d4ff"/>
+                        <stop offset="1" stop-color="#0099cc"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
 
         <!-- Swimming sharks -->
-        <div class="shark" style="animation-delay: 0s;">🦈</div>
-        <div class="shark" style="animation-delay: -10s; font-size: 30px; opacity: 0.1;">🦈</div>
-        <div class="shark reverse" style="animation-delay: -5s;">🦈</div>
-        <div class="shark reverse" style="animation-delay: -15s; font-size: 25px; opacity: 0.08;">🦈</div>
+        <div class="shark-swim" style="animation-delay: 0s;">
+            <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M180 40C180 32 150 18 120 18C100 18 90 28 80 28C70 28 60 18 40 18C10 18 -10 32 5 48C15 56 30 56 50 48C60 44 70 48 80 56C90 64 100 64 110 64C120 64 130 64 140 56C150 48 160 44 170 48C185 56 195 52 198 44C200 40 180 40 180 40Z" fill="url(#swimShark1)"/>
+                <path d="M140 12L170 0L165 24L140 12Z" fill="url(#swimShark1)"/>
+                <circle cx="55" cy="38" r="3" fill="#020c1b"/>
+                <defs>
+                    <linearGradient id="swimShark1" x1="0" y1="40" x2="200" y2="40">
+                        <stop stop-color="#00d4ff"/>
+                        <stop offset="1" stop-color="#0099cc"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="shark-swim reverse" style="animation-delay: -12s;">
+            <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M180 40C180 32 150 18 120 18C100 18 90 28 80 28C70 28 60 18 40 18C10 18 -10 32 5 48C15 56 30 56 50 48C60 44 70 48 80 56C90 64 100 64 110 64C120 64 130 64 140 56C150 48 160 44 170 48C185 56 195 52 198 44C200 40 180 40 180 40Z" fill="url(#swimShark2)"/>
+                <path d="M140 12L170 0L165 24L140 12Z" fill="url(#swimShark2)"/>
+                <circle cx="55" cy="38" r="3" fill="#020c1b"/>
+                <defs>
+                    <linearGradient id="swimShark2" x1="0" y1="40" x2="200" y2="40">
+                        <stop stop-color="#00d4ff"/>
+                        <stop offset="1" stop-color="#0099cc"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
 
-        <!-- Bubbles -->
-        <div class="bubble" style="left: 10%; width: 8px; height: 8px; animation-delay: 0s;"></div>
-        <div class="bubble" style="left: 20%; width: 12px; height: 12px; animation-delay: -2s;"></div>
-        <div class="bubble" style="left: 35%; width: 6px; height: 6px; animation-delay: -4s;"></div>
-        <div class="bubble" style="left: 50%; width: 10px; height: 10px; animation-delay: -1s;"></div>
-        <div class="bubble" style="left: 65%; width: 8px; height: 8px; animation-delay: -3s;"></div>
-        <div class="bubble" style="left: 80%; width: 14px; height: 14px; animation-delay: -5s;"></div>
-        <div class="bubble" style="left: 90%; width: 6px; height: 6px; animation-delay: -6s;"></div>
+        <!-- Chart line animation -->
+        <div class="chart-line-anim">
+            <svg viewBox="0 0 2000 200" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(0,212,255,0.3)"/>
+                        <stop offset="50%" stop-color="rgba(0,230,118,0.5)"/>
+                        <stop offset="100%" stop-color="rgba(0,212,255,0.3)"/>
+                    </linearGradient>
+                    <linearGradient id="chartAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(0,212,255,0.1)"/>
+                        <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
+                    </linearGradient>
+                </defs>
+                <path d="M0,150 L100,130 L200,140 L300,100 L400,120 L500,80 L600,90 L700,60 L800,70 L900,40 L1000,50 L1100,70 L1200,40 L1300,60 L1400,30 L1500,50 L1600,20 L1700,40 L1800,30 L1900,50 L2000,20"
+                      fill="none" stroke="url(#chartGrad)" stroke-width="3"/>
+                <path d="M0,150 L100,130 L200,140 L300,100 L400,120 L500,80 L600,90 L700,60 L800,70 L900,40 L1000,50 L1100,70 L1200,40 L1300,60 L1400,30 L1500,50 L1600,20 L1700,40 L1800,30 L1900,50 L2000,20 L2000,200 L0,200 Z"
+                      fill="url(#chartAreaGrad)"/>
+            </svg>
+        </div>
 
-        <!-- Floating particles -->
-        <div class="particle" style="left: 5%; top: 20%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 15%; top: 40%; animation-delay: -2s;"></div>
-        <div class="particle" style="left: 30%; top: 60%; animation-delay: -4s;"></div>
-        <div class="particle" style="left: 45%; top: 30%; animation-delay: -1s;"></div>
-        <div class="particle" style="left: 60%; top: 50%; animation-delay: -3s;"></div>
-        <div class="particle" style="left: 75%; top: 25%; animation-delay: -5s;"></div>
-        <div class="particle" style="left: 85%; top: 70%; animation-delay: -2.5s;"></div>
+        <!-- Background candlesticks -->
+        <div class="bg-candles">
+            <div class="bg-candle green" style="height: 80px; animation-delay: 0s;"></div>
+            <div class="bg-candle red" style="height: 60px; animation-delay: -0.5s;"></div>
+            <div class="bg-candle green" style="height: 100px; animation-delay: -1s;"></div>
+            <div class="bg-candle green" style="height: 70px; animation-delay: -1.5s;"></div>
+            <div class="bg-candle red" style="height: 90px; animation-delay: -2s;"></div>
+            <div class="bg-candle green" style="height: 120px; animation-delay: -0.3s;"></div>
+            <div class="bg-candle red" style="height: 50px; animation-delay: -0.8s;"></div>
+            <div class="bg-candle green" style="height: 110px; animation-delay: -1.3s;"></div>
+            <div class="bg-candle red" style="height: 75px; animation-delay: -1.8s;"></div>
+            <div class="bg-candle green" style="height: 95px; animation-delay: -2.3s;"></div>
+            <div class="bg-candle green" style="height: 85px; animation-delay: -0.2s;"></div>
+            <div class="bg-candle red" style="height: 65px; animation-delay: -0.7s;"></div>
+            <div class="bg-candle green" style="height: 130px; animation-delay: -1.2s;"></div>
+            <div class="bg-candle red" style="height: 55px; animation-delay: -1.7s;"></div>
+            <div class="bg-candle green" style="height: 105px; animation-delay: -2.2s;"></div>
+        </div>
 
-        <!-- Floating price indicators -->
-        <div class="price-float up" style="left: 8%; top: 25%; animation-delay: 0s;">+2.45%</div>
-        <div class="price-float down" style="left: 22%; top: 45%; animation-delay: -2s;">-1.23%</div>
-        <div class="price-float up" style="left: 75%; top: 20%; animation-delay: -4s;">+5.67%</div>
-        <div class="price-float up" style="left: 88%; top: 55%; animation-delay: -1s;">+0.89%</div>
-        <div class="price-float down" style="left: 45%; top: 70%; animation-delay: -3s;">-0.45%</div>
-        <div class="price-float up" style="left: 60%; top: 35%; animation-delay: -5s;">+3.21%</div>
+        <!-- Dollar signs -->
+        <div class="dollar-float" style="left: 10%; animation-delay: 0s;">$</div>
+        <div class="dollar-float" style="left: 25%; animation-delay: -3s;">$</div>
+        <div class="dollar-float" style="left: 40%; animation-delay: -6s;">$</div>
+        <div class="dollar-float" style="left: 55%; animation-delay: -2s;">$</div>
+        <div class="dollar-float" style="left: 70%; animation-delay: -5s;">$</div>
+        <div class="dollar-float" style="left: 85%; animation-delay: -8s;">$</div>
 
-        <!-- Depth overlay -->
-        <div class="depth-overlay"></div>
+        <!-- Price tags -->
+        <div class="price-tag up" style="left: 8%; top: 25%; animation-delay: 0s;">+12.45%</div>
+        <div class="price-tag down" style="left: 20%; top: 50%; animation-delay: -2s;">-3.21%</div>
+        <div class="price-tag up" style="left: 75%; top: 18%; animation-delay: -4s;">+8.76%</div>
+        <div class="price-tag up" style="left: 85%; top: 45%; animation-delay: -1s;">+2.34%</div>
+        <div class="price-tag down" style="left: 45%; top: 65%; animation-delay: -3s;">-1.56%</div>
+        <div class="price-tag up" style="left: 60%; top: 30%; animation-delay: -5s;">+15.89%</div>
+
+        <!-- Glowing lines -->
+        <div class="glow-line" style="top: 30%; width: 300px; animation-delay: 0s;"></div>
+        <div class="glow-line" style="top: 50%; width: 400px; animation-delay: -3s;"></div>
+        <div class="glow-line" style="top: 70%; width: 250px; animation-delay: -6s;"></div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-content">
             <a href="#" class="logo" onclick="showPage('home')">
-                <div class="logo-icon">🦈</div>
+                <div class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44 24C44 20 36 14 28 14C24 14 22 16 20 16C18 16 16 14 12 14C4 14 -2 20 2 26C4 28 8 28 12 26C14 25 16 26 18 28C20 30 22 30 24 30C26 30 28 30 30 28C32 26 34 25 36 26C40 28 44 28 46 26C48 24 44 24 44 24Z" fill="url(#sharkGrad)"/>
+                        <path d="M32 10L40 4L38 14L32 10Z" fill="url(#sharkGrad)"/>
+                        <circle cx="14" cy="22" r="2" fill="#020c1b"/>
+                        <path d="M8 24L4 26L6 24L4 22L8 24Z" fill="#fff" opacity="0.8"/>
+                        <defs>
+                            <linearGradient id="sharkGrad" x1="0" y1="20" x2="48" y2="20" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00d4ff"/>
+                                <stop offset="1" stop-color="#0099cc"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
                 The SHARKS
             </a>
             <div class="nav-links" id="navLinks">
@@ -1345,8 +1483,20 @@
         <footer class="footer">
             <div class="footer-content">
                 <a href="#" class="logo" onclick="showPage('home')">
-                    <div class="logo-icon">📊</div>
-                    TradeMaster Academy
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 24C44 20 36 14 28 14C24 14 22 16 20 16C18 16 16 14 12 14C4 14 -2 20 2 26C4 28 8 28 12 26C14 25 16 26 18 28C20 30 22 30 24 30C26 30 28 30 30 28C32 26 34 25 36 26C40 28 44 28 46 26C48 24 44 24 44 24Z" fill="url(#sharkGrad2)"/>
+                            <path d="M32 10L40 4L38 14L32 10Z" fill="url(#sharkGrad2)"/>
+                            <circle cx="14" cy="22" r="2" fill="#020c1b"/>
+                            <defs>
+                                <linearGradient id="sharkGrad2" x1="0" y1="20" x2="48" y2="20" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00d4ff"/>
+                                    <stop offset="1" stop-color="#0099cc"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    The SHARKS
                 </a>
                 <div class="footer-links">
                     <a href="#">Regulamin</a>
