@@ -8,17 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background: #0f1419;
-            --background-secondary: #1a1f26;
-            --foreground: #e7e9ea;
-            --card-bg: #1a1f26;
-            --card-border: #2f3336;
-            --accent: #1d9bf0;
-            --accent-dark: #1a8cd8;
-            --text-muted: #71767b;
-            --text-secondary: #d6d9db;
-            --success: #00ba7c;
-            --warning: #ffad1f;
+            --background: #0a192f;
+            --background-secondary: #112240;
+            --foreground: #e6f1ff;
+            --card-bg: #112240;
+            --card-border: #233554;
+            --accent: #64ffda;
+            --accent-secondary: #57cbff;
+            --accent-dark: #4cd6c0;
+            --text-muted: #8892b0;
+            --text-secondary: #ccd6f6;
+            --success: #64ffda;
+            --warning: #ffd700;
+            --gradient-start: #0a192f;
+            --gradient-end: #172a45;
         }
 
         * {
@@ -29,14 +32,16 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--background);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            background-attachment: fixed;
             color: var(--foreground);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* Navigation */
         .navbar {
-            background: rgba(15, 20, 25, 0.95);
+            background: rgba(10, 25, 47, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--card-border);
             padding: 0 2rem;
@@ -117,12 +122,16 @@
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #0a192f;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--accent-dark);
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
@@ -233,7 +242,7 @@
 
         .chart-bar {
             flex: 1;
-            background: linear-gradient(to top, var(--accent), rgba(29, 155, 240, 0.3));
+            background: linear-gradient(to top, var(--accent), rgba(100, 255, 218, 0.3));
             border-radius: 2px 2px 0 0;
             min-height: 10%;
             transition: height 0.3s ease;
@@ -323,7 +332,7 @@
         .feature-icon {
             width: 40px;
             height: 40px;
-            background: rgba(29, 155, 240, 0.1);
+            background: rgba(100, 255, 218, 0.1);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -344,55 +353,6 @@
             font-size: 0.875rem;
             color: var(--text-muted);
             line-height: 1.5;
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-            margin-bottom: 1.25rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .testimonial-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--card-border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        .testimonial-name {
-            font-weight: 500;
-            color: white;
-            font-size: 0.875rem;
-        }
-
-        .testimonial-role {
-            font-size: 0.8125rem;
-            color: var(--text-muted);
         }
 
         /* Courses */
@@ -418,7 +378,7 @@
 
         .course-header {
             padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(29, 155, 240, 0.1), rgba(29, 155, 240, 0.05));
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(87, 203, 255, 0.05));
             border-bottom: 1px solid var(--card-border);
         }
 
@@ -775,6 +735,8 @@
             display: none;
             min-height: calc(100vh - 60px);
             padding-top: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .page.active {
@@ -836,24 +798,8 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
             overflow: hidden;
-            opacity: 0.4;
-        }
-
-        .trading-line {
-            position: absolute;
-            bottom: 20%;
-            left: 0;
-            width: 200%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            animation: tradingLine 20s linear infinite;
-        }
-
-        @keyframes tradingLine {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); }
         }
 
         .grid-pattern {
@@ -863,16 +809,66 @@
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(rgba(29, 155, 240, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(29, 155, 240, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
+        /* Animated chart line in background */
+        .chart-line-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-line-bg svg {
+            width: 200%;
+            height: 100%;
+            animation: chartMove 30s linear infinite;
+        }
+
+        @keyframes chartMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Floating price indicators */
+        .price-float {
+            position: absolute;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', monospace;
+            animation: priceFloat 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .price-float.up {
+            background: rgba(100, 255, 218, 0.15);
+            color: #64ffda;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .price-float.down {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        @keyframes priceFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-15px) scale(1.05); opacity: 0.8; }
+        }
+
+        /* Candlesticks */
         .candle {
             position: absolute;
-            width: 6px;
-            border-radius: 1px;
-            animation: candleFloat 15s ease-in-out infinite;
+            width: 8px;
+            border-radius: 2px;
+            animation: candleGrow 4s ease-in-out infinite;
         }
 
         .candle::before {
@@ -880,61 +876,70 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 1px;
-            background: inherit;
+            width: 2px;
+            height: 15px;
+            top: -10px;
+        }
+
+        .candle::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            bottom: -10px;
         }
 
         .candle.green {
-            background: rgba(0, 186, 124, 0.15);
+            background: rgba(100, 255, 218, 0.4);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
         }
 
-        .candle.green::before {
-            background: rgba(0, 186, 124, 0.1);
+        .candle.green::before, .candle.green::after {
+            background: rgba(100, 255, 218, 0.3);
         }
 
         .candle.red {
-            background: rgba(244, 33, 46, 0.15);
+            background: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
         }
 
-        .candle.red::before {
-            background: rgba(244, 33, 46, 0.1);
+        .candle.red::before, .candle.red::after {
+            background: rgba(255, 107, 107, 0.3);
         }
 
-        @keyframes candleFloat {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translateY(-20px) translateX(5px);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(-10px) translateX(-5px);
-                opacity: 0.4;
-            }
-            75% {
-                transform: translateY(-25px) translateX(3px);
-                opacity: 0.6;
-            }
+        @keyframes candleGrow {
+            0%, 100% { transform: scaleY(1); opacity: 0.6; }
+            50% { transform: scaleY(1.3); opacity: 0.9; }
         }
 
-        .pulse-circle {
+        /* Glowing orbs */
+        .glow-orb {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid rgba(29, 155, 240, 0.1);
-            animation: pulse 4s ease-out infinite;
+            filter: blur(40px);
+            animation: orbFloat 10s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            100% {
-                transform: scale(3);
-                opacity: 0;
-            }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.1); }
+            66% { transform: translate(-20px, 10px) scale(0.9); }
+        }
+
+        /* Data streams */
+        .data-stream {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            animation: streamFlow 3s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes streamFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
         }
 
         /* Responsive */
@@ -967,10 +972,6 @@
 
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
             }
 
             .courses-grid {
@@ -1030,20 +1031,57 @@
     <!-- Trading Background Animation -->
     <div class="trading-bg">
         <div class="grid-pattern"></div>
-        <div class="trading-line"></div>
-        <div class="trading-line" style="bottom: 40%; animation-delay: -5s;"></div>
-        <div class="trading-line" style="bottom: 60%; animation-delay: -10s;"></div>
-        <div class="candle green" style="left: 10%; top: 20%; height: 40px; animation-delay: 0s;"></div>
-        <div class="candle red" style="left: 25%; top: 35%; height: 30px; animation-delay: -3s;"></div>
-        <div class="candle green" style="left: 40%; top: 50%; height: 50px; animation-delay: -6s;"></div>
-        <div class="candle red" style="left: 55%; top: 25%; height: 35px; animation-delay: -9s;"></div>
-        <div class="candle green" style="left: 70%; top: 45%; height: 45px; animation-delay: -12s;"></div>
-        <div class="candle red" style="left: 85%; top: 30%; height: 25px; animation-delay: -2s;"></div>
-        <div class="candle green" style="left: 15%; top: 65%; height: 35px; animation-delay: -7s;"></div>
-        <div class="candle red" style="left: 60%; top: 70%; height: 40px; animation-delay: -4s;"></div>
-        <div class="pulse-circle" style="left: 20%; top: 30%; width: 100px; height: 100px;"></div>
-        <div class="pulse-circle" style="left: 70%; top: 60%; width: 80px; height: 80px; animation-delay: -2s;"></div>
-        <div class="pulse-circle" style="left: 50%; top: 40%; width: 120px; height: 120px; animation-delay: -1s;"></div>
+
+        <!-- Glowing orbs -->
+        <div class="glow-orb" style="left: 10%; top: 20%; width: 300px; height: 300px; background: rgba(100, 255, 218, 0.08);"></div>
+        <div class="glow-orb" style="right: 10%; top: 50%; width: 400px; height: 400px; background: rgba(87, 203, 255, 0.06); animation-delay: -3s;"></div>
+        <div class="glow-orb" style="left: 40%; bottom: 10%; width: 250px; height: 250px; background: rgba(100, 255, 218, 0.05); animation-delay: -6s;"></div>
+
+        <!-- Animated chart line SVG -->
+        <div class="chart-line-bg">
+            <svg viewBox="0 0 2000 400" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgba(100,255,218,0.3)"/>
+                        <stop offset="50%" style="stop-color:rgba(87,203,255,0.5)"/>
+                        <stop offset="100%" style="stop-color:rgba(100,255,218,0.3)"/>
+                    </linearGradient>
+                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(100,255,218,0.15)"/>
+                        <stop offset="100%" style="stop-color:rgba(100,255,218,0)"/>
+                    </linearGradient>
+                </defs>
+                <path d="M0,300 Q100,280 200,250 T400,200 T600,220 T800,180 T1000,200 T1200,150 T1400,170 T1600,120 T1800,140 T2000,100"
+                      fill="none" stroke="url(#lineGradient)" stroke-width="3"/>
+                <path d="M0,300 Q100,280 200,250 T400,200 T600,220 T800,180 T1000,200 T1200,150 T1400,170 T1600,120 T1800,140 T2000,100 L2000,400 L0,400 Z"
+                      fill="url(#areaGradient)"/>
+            </svg>
+        </div>
+
+        <!-- Floating price indicators -->
+        <div class="price-float up" style="left: 8%; top: 25%; animation-delay: 0s;">+2.45%</div>
+        <div class="price-float down" style="left: 22%; top: 45%; animation-delay: -2s;">-1.23%</div>
+        <div class="price-float up" style="left: 75%; top: 20%; animation-delay: -4s;">+5.67%</div>
+        <div class="price-float up" style="left: 88%; top: 55%; animation-delay: -1s;">+0.89%</div>
+        <div class="price-float down" style="left: 45%; top: 70%; animation-delay: -3s;">-0.45%</div>
+        <div class="price-float up" style="left: 60%; top: 35%; animation-delay: -5s;">+3.21%</div>
+
+        <!-- Candlesticks -->
+        <div class="candle green" style="left: 5%; top: 35%; height: 45px; animation-delay: 0s;"></div>
+        <div class="candle red" style="left: 12%; top: 50%; height: 35px; animation-delay: -1s;"></div>
+        <div class="candle green" style="left: 19%; top: 40%; height: 55px; animation-delay: -2s;"></div>
+        <div class="candle green" style="left: 26%; top: 30%; height: 40px; animation-delay: -0.5s;"></div>
+        <div class="candle red" style="left: 70%; top: 45%; height: 50px; animation-delay: -1.5s;"></div>
+        <div class="candle green" style="left: 77%; top: 35%; height: 60px; animation-delay: -2.5s;"></div>
+        <div class="candle red" style="left: 84%; top: 55%; height: 35px; animation-delay: -3s;"></div>
+        <div class="candle green" style="left: 91%; top: 40%; height: 45px; animation-delay: -0.8s;"></div>
+
+        <!-- Data streams -->
+        <div class="data-stream" style="left: 15%; height: 100px; animation-delay: 0s;"></div>
+        <div class="data-stream" style="left: 35%; height: 80px; animation-delay: -1s;"></div>
+        <div class="data-stream" style="left: 55%; height: 120px; animation-delay: -2s;"></div>
+        <div class="data-stream" style="left: 75%; height: 90px; animation-delay: -0.5s;"></div>
+        <div class="data-stream" style="left: 92%; height: 110px; animation-delay: -1.5s;"></div>
     </div>
 
     <!-- Navigation -->
