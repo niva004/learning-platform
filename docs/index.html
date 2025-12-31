@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradeMasterPro - Naucz sie tradingu od ekspertow</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>TradeMaster Academy - Profesjonalne szkolenia tradingowe</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background: #0d1117;
-            --background-secondary: #161b22;
-            --foreground: #e6edf3;
-            --card-bg: #161b22;
-            --card-border: #30363d;
-            --accent-green: #00d26a;
-            --accent-green-dark: #00a854;
-            --accent-red: #ff4757;
-            --accent-gold: #ffd700;
-            --text-muted: #8b949e;
-            --text-secondary: #c9d1d9;
+            --background: #0f1419;
+            --background-secondary: #1a1f26;
+            --foreground: #e7e9ea;
+            --card-bg: #1a1f26;
+            --card-border: #2f3336;
+            --accent: #1d9bf0;
+            --accent-dark: #1a8cd8;
+            --text-muted: #71767b;
+            --text-secondary: #d6d9db;
+            --success: #00ba7c;
+            --warning: #ffad1f;
         }
 
         * {
@@ -28,48 +28,16 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--background);
             color: var(--foreground);
             line-height: 1.6;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--background);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--card-border);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-
-        /* Anti-screenshot protection */
-        @media print {
-            body * { display: none !important; }
-            body::after {
-                content: "Drukowanie jest zablokowane dla ochrony tresci.";
-                display: block;
-                font-size: 24px;
-                text-align: center;
-                padding: 50px;
-                color: white;
-            }
         }
 
         /* Navigation */
         .navbar {
-            background: rgba(13, 17, 23, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--card-border);
             padding: 0 2rem;
             position: fixed;
@@ -77,11 +45,11 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            height: 64px;
+            height: 60px;
         }
 
         .navbar-content {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -90,8 +58,8 @@
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: bold;
+            font-size: 1.125rem;
+            font-weight: 600;
             color: white;
             text-decoration: none;
             display: flex;
@@ -100,31 +68,27 @@
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
-            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: black;
-        }
-
-        .logo span {
-            color: var(--accent-green);
+            font-size: 0.875rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
             align-items: center;
         }
 
         .nav-links a, .nav-links button {
-            padding: 0.5rem 0.75rem;
+            padding: 0.5rem 0.875rem;
             text-decoration: none;
             color: var(--text-secondary);
-            border-radius: 6px;
+            border-radius: 9999px;
             transition: all 0.2s;
             border: none;
             background: none;
@@ -134,730 +98,161 @@
         }
 
         .nav-links a:hover, .nav-links button:hover {
+            background: rgba(255, 255, 255, 0.1);
             color: white;
         }
 
-        /* Buttons */
         .btn {
-            padding: 0.625rem 1.25rem;
+            padding: 0.5rem 1rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 9999px;
             cursor: pointer;
             font-size: 0.875rem;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.375rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
-            color: black;
+            background: var(--accent);
+            color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 210, 106, 0.3);
+            background: var(--accent-dark);
         }
 
         .btn-secondary {
             background: transparent;
-            border: 2px solid var(--accent-green);
-            color: var(--accent-green);
+            border: 1px solid var(--card-border);
+            color: var(--foreground);
         }
 
         .btn-secondary:hover {
-            background: var(--accent-green);
-            color: black;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--card-border);
-            color: var(--text-secondary);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        .btn-danger {
-            background: var(--accent-red);
-            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-muted);
         }
 
         .btn-lg {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            padding: 8rem 2rem 5rem;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(0, 210, 106, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(0, 168, 84, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #0d1117 0%, #161b22 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px);
-            background-size: 40px 40px;
+            padding: 7rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            background: rgba(0, 210, 106, 0.1);
-            border: 1px solid rgba(0, 210, 106, 0.3);
-            color: var(--accent-green);
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+        .hero-text h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            color: white;
         }
 
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
+        .hero-text p {
+            font-size: 1.0625rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 500px;
+            margin-bottom: 1.5rem;
+            max-width: 480px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             margin-bottom: 2rem;
         }
 
-        .hero-features {
-            display: flex;
-            gap: 1.5rem;
+        .hero-note {
+            font-size: 0.8125rem;
             color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        .hero-features span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .hero-features svg {
-            color: var(--accent-green);
+        .hero-note svg {
+            width: 16px;
+            height: 16px;
+            color: var(--success);
         }
 
-        /* Screenshot Container */
-        .screenshot-container {
-            position: relative;
-        }
-
-        .screenshot-glow {
-            position: absolute;
-            inset: -4px;
-            background: linear-gradient(135deg, rgba(0, 210, 106, 0.2) 0%, rgba(255, 215, 0, 0.2) 100%);
-            border-radius: 16px;
-            filter: blur(20px);
-        }
-
-        .screenshot-window {
-            position: relative;
+        .hero-image {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            aspect-ratio: 4/3;
+            display: flex;
+            flex-direction: column;
         }
 
-        .screenshot-header {
+        .chart-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            background: var(--background);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--card-border);
         }
 
-        .screenshot-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        .chart-title {
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
-        .screenshot-dot.red { background: var(--accent-red); }
-        .screenshot-dot.yellow { background: var(--accent-gold); }
-        .screenshot-dot.green { background: var(--accent-green); }
-
-        .screenshot-title {
-            margin-left: 1rem;
+        .chart-badge {
             font-size: 0.75rem;
             color: var(--text-muted);
+            background: var(--background);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
         }
 
-        .screenshot-body {
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .chart-area {
+            flex: 1;
             position: relative;
-            overflow: hidden;
-        }
-
-        .chart-placeholder {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .chart-line {
-            position: absolute;
-            bottom: 30%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg,
-                var(--accent-green) 0%,
-                var(--accent-green) 30%,
-                var(--accent-red) 45%,
-                var(--accent-green) 60%,
-                var(--accent-green) 100%);
-            clip-path: polygon(0% 50%, 10% 30%, 20% 60%, 30% 20%, 40% 45%, 50% 70%, 60% 40%, 70% 55%, 80% 25%, 90% 50%, 100% 35%);
-            height: 40%;
-            opacity: 0.8;
-        }
-
-        .chart-candles {
-            position: absolute;
-            bottom: 20%;
-            left: 10%;
-            right: 10%;
-            height: 50%;
             display: flex;
             align-items: flex-end;
-            justify-content: space-around;
+            gap: 3px;
+            padding-top: 1rem;
         }
 
-        .candle {
-            width: 8px;
-            background: var(--accent-green);
-            border-radius: 2px;
-            animation: candleGrow 3s ease-in-out infinite;
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--accent), rgba(29, 155, 240, 0.3));
+            border-radius: 2px 2px 0 0;
+            min-height: 10%;
+            transition: height 0.3s ease;
         }
 
-        .candle.red { background: var(--accent-red); }
-
-        .candle:nth-child(1) { height: 40%; animation-delay: 0s; }
-        .candle:nth-child(2) { height: 60%; animation-delay: 0.2s; }
-        .candle:nth-child(3) { height: 35%; animation-delay: 0.4s; }
-        .candle:nth-child(4) { height: 70%; animation-delay: 0.6s; }
-        .candle:nth-child(5) { height: 45%; animation-delay: 0.8s; }
-        .candle:nth-child(6) { height: 55%; animation-delay: 1s; }
-        .candle:nth-child(7) { height: 65%; animation-delay: 1.2s; }
-        .candle:nth-child(8) { height: 50%; animation-delay: 1.4s; }
-
-        @keyframes candleGrow {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.7); }
+        .chart-bar:nth-child(odd) {
+            opacity: 0.7;
         }
 
-        /* Trading Line Animation */
-        .trading-line {
-            position: absolute;
-            bottom: 30%;
-            left: 0;
-            right: 0;
-            height: 60%;
-            overflow: hidden;
-        }
-
-        .trading-line svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .trading-line path {
-            fill: none;
-            stroke: url(#lineGradient);
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawLine 3s ease-out forwards;
-        }
-
-        .trading-line .glow {
-            filter: blur(4px);
-            opacity: 0.5;
-        }
-
-        @keyframes drawLine {
-            to { stroke-dashoffset: 0; }
-        }
-
-        /* Price Ticker */
-        .price-ticker {
-            position: absolute;
-            top: 1rem;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 0;
-        }
-
-        .ticker-content {
-            display: flex;
-            gap: 3rem;
-            animation: tickerScroll 20s linear infinite;
-            white-space: nowrap;
-        }
-
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .ticker-symbol {
-            color: white;
-            font-weight: 600;
-        }
-
-        .ticker-price {
-            color: var(--text-muted);
-        }
-
-        .ticker-change {
-            padding: 0.125rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .ticker-change.up {
-            background: rgba(0, 210, 106, 0.2);
-            color: var(--accent-green);
-        }
-
-        .ticker-change.down {
-            background: rgba(255, 71, 87, 0.2);
-            color: var(--accent-red);
-        }
-
-        @keyframes tickerScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Floating Price Bubbles */
-        .floating-prices {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .price-bubble {
-            position: absolute;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            opacity: 0;
-            animation: floatUp 4s ease-out infinite;
-        }
-
-        .price-bubble.green {
-            background: rgba(0, 210, 106, 0.2);
-            color: var(--accent-green);
-            border: 1px solid rgba(0, 210, 106, 0.3);
-        }
-
-        .price-bubble.red {
-            background: rgba(255, 71, 87, 0.2);
-            color: var(--accent-red);
-            border: 1px solid rgba(255, 71, 87, 0.3);
-        }
-
-        @keyframes floatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.8);
-            }
-            10% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            90% {
-                opacity: 1;
-                transform: translateY(-100px) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-120px) scale(0.8);
-            }
-        }
-
-        /* Buy/Sell Signals */
-        .trade-signals {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .trade-signal {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.625rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: signalPop 3s ease-out infinite;
-        }
-
-        .trade-signal.buy {
-            background: var(--accent-green);
-            color: black;
-        }
-
-        .trade-signal.sell {
-            background: var(--accent-red);
-            color: white;
-        }
-
-        .trade-signal svg {
-            width: 10px;
-            height: 10px;
-        }
-
-        @keyframes signalPop {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            10%, 90% { opacity: 1; transform: scale(1); }
-        }
-
-        /* Pulsing Dot */
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .pulse-dot::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            opacity: 0;
-            animation: pulseRing 2s ease-out infinite;
-        }
-
-        @keyframes pulseRing {
-            0% { transform: scale(0.5); opacity: 0.8; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        /* Counter Animation */
-        .counter {
-            display: inline-block;
-        }
-
-        /* Card Entrance Animation */
-        .animate-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-
-        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
-        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
-        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .course-card:nth-child(1) { animation-delay: 0.1s; }
-        .course-card:nth-child(2) { animation-delay: 0.2s; }
-
-        /* Glowing Border Animation */
-        @keyframes borderPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.4); }
-            50% { box-shadow: 0 0 20px 5px rgba(0, 210, 106, 0.2); }
-        }
-
-        .glow-border {
-            animation: borderPulse 3s ease-in-out infinite;
-        }
-
-        /* Typing Cursor */
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s step-end infinite;
-            color: var(--accent-green);
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Market Status Indicator */
-        .market-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 210, 106, 0.1);
-            border: 1px solid rgba(0, 210, 106, 0.3);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-
-        .market-status .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        /* Profit Counter Animation */
-        .profit-counter {
-            font-family: 'JetBrains Mono', monospace;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* Sparkle Effect */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            animation: sparkle 2s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        /* Number Scroll Animation */
-        .scroll-number {
-            display: inline-block;
-            overflow: hidden;
-            height: 1em;
-        }
-
-        .scroll-number span {
-            display: block;
-            animation: scrollUp 0.5s ease-out forwards;
-        }
-
-        @keyframes scrollUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-
-        /* Live Badge */
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(255, 71, 87, 0.1);
-            border: 1px solid var(--accent-red);
-            border-radius: 4px;
-            color: var(--accent-red);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .live-badge .rec-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-red);
-            border-radius: 50%;
-            animation: recPulse 1s ease-in-out infinite;
-        }
-
-        @keyframes recPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Shake Animation for Alerts */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-
-        /* Success Checkmark Animation */
-        .success-check {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: scaleIn 0.5s ease-out;
-        }
-
-        .success-check svg {
-            width: 30px;
-            height: 30px;
-            stroke: black;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-            stroke-dasharray: 50;
-            stroke-dashoffset: 50;
-            animation: drawCheck 0.5s ease-out 0.3s forwards;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        @keyframes drawCheck {
-            to { stroke-dashoffset: 0; }
-        }
-
-        /* Gradient Text Animation */
-        .animated-gradient {
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-gold), var(--accent-green));
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientMove 3s linear infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .profit-float {
-            position: absolute;
-            bottom: -1rem;
-            left: -1rem;
-            background: var(--card-bg);
-            border: 1px solid var(--accent-green);
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            box-shadow: 0 0 20px rgba(0, 210, 106, 0.2);
-        }
-
-        .profit-float-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .profit-float-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-
-        /* Stats Section */
+        /* Stats */
         .stats-section {
-            padding: 4rem 2rem;
-            background: rgba(22, 27, 34, 0.5);
+            padding: 3rem 2rem;
+            background: var(--background-secondary);
             border-top: 1px solid var(--card-border);
             border-bottom: 1px solid var(--card-border);
         }
 
         .stats-grid {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -869,13 +264,10 @@
         }
 
         .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
@@ -885,35 +277,35 @@
 
         /* Section */
         .section {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 600;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .section-subtitle {
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 560px;
             margin: 0 auto;
         }
 
         /* Features */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }
 
         .feature-card {
@@ -921,30 +313,28 @@
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 1.5rem;
-            transition: all 0.3s;
+            transition: border-color 0.2s;
         }
 
         .feature-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 210, 106, 0.1);
+            border-color: var(--text-muted);
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(0, 210, 106, 0.1);
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            background: rgba(29, 155, 240, 0.1);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-green);
+            color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.125rem;
         }
 
         .feature-title {
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 600;
             color: white;
             margin-bottom: 0.5rem;
@@ -953,13 +343,14 @@
         .feature-description {
             font-size: 0.875rem;
             color: var(--text-muted);
+            line-height: 1.5;
         }
 
         /* Testimonials */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         .testimonial-card {
@@ -967,57 +358,48 @@
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            border-color: var(--accent-green);
-        }
-
-        .testimonial-stars {
-            display: flex;
-            gap: 0.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent-gold);
         }
 
         .testimonial-text {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            font-size: 0.9375rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
         }
 
         .testimonial-author {
-            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--card-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
             color: white;
+            font-size: 0.875rem;
         }
 
         .testimonial-role {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             color: var(--text-muted);
-        }
-
-        .testimonial-profit {
-            background: rgba(0, 210, 106, 0.1);
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
         }
 
         /* Courses */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -1025,81 +407,53 @@
         .course-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: border-color 0.2s;
         }
 
         .course-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 210, 106, 0.1);
+            border-color: var(--accent);
         }
 
-        .course-card.premium {
-            border-color: var(--accent-gold);
+        .course-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(29, 155, 240, 0.1), rgba(29, 155, 240, 0.05));
+            border-bottom: 1px solid var(--card-border);
         }
 
-        .course-card.premium:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.1);
+        .course-level {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
         }
 
-        .course-image {
-            height: 160px;
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-        }
-
-        .course-card.premium .course-image {
-            background: linear-gradient(135deg, var(--accent-gold) 0%, #cc9900 100%);
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
         }
 
         .course-content {
             padding: 1.5rem;
         }
 
-        .course-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .badge-beginner {
-            background: rgba(0, 210, 106, 0.1);
-            color: var(--accent-green);
-        }
-
-        .badge-advanced {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent-gold);
-        }
-
-        .course-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
         .course-description {
             color: var(--text-muted);
             font-size: 0.875rem;
             margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
         .course-meta {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
         }
 
         .course-footer {
@@ -1111,13 +465,61 @@
         }
 
         .course-price {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--accent-green);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
         }
 
-        .course-card.premium .course-price {
-            color: var(--accent-gold);
+        .course-price span {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Instructor */
+        .instructor-section {
+            background: var(--background-secondary);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .instructor-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--card-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .instructor-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .instructor-title {
+            color: var(--accent);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .instructor-bio {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
         /* FAQ */
@@ -1127,26 +529,17 @@
         }
 
         .faq-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .faq-item:hover {
-            border-color: var(--accent-green);
+            border-bottom: 1px solid var(--card-border);
         }
 
         .faq-question {
             width: 100%;
-            padding: 1.25rem 1.5rem;
+            padding: 1.25rem 0;
             background: none;
             border: none;
             text-align: left;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.9375rem;
+            font-weight: 500;
             color: white;
             cursor: pointer;
             display: flex;
@@ -1154,9 +547,15 @@
             align-items: center;
         }
 
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
         .faq-question svg {
+            width: 20px;
+            height: 20px;
             color: var(--text-muted);
-            transition: transform 0.3s;
+            transition: transform 0.2s;
         }
 
         .faq-item.open .faq-question svg {
@@ -1165,71 +564,76 @@
 
         .faq-answer {
             display: none;
-            padding: 0 1.5rem 1.25rem;
+            padding-bottom: 1.25rem;
             color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
         }
 
         .faq-item.open .faq-answer {
             display: block;
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta-section {
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(ellipse at 50% 50%, rgba(0, 210, 106, 0.1) 0%, transparent 50%),
-                var(--background);
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px);
-            background-size: 40px 40px;
         }
 
         .cta-content {
-            position: relative;
-            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 600;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .cta-subtitle {
-            font-size: 1.125rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 1.5rem;
         }
 
-        .cta-guarantee {
-            margin-top: 1rem;
-            font-size: 0.875rem;
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--background-secondary);
+            border-top: 1px solid var(--card-border);
+            padding: 2rem;
+        }
+
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .disclaimer-title {
+            font-size: 0.75rem;
+            font-weight: 600;
             color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .disclaimer-text {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
         /* Footer */
         .footer {
             background: var(--background);
             border-top: 1px solid var(--card-border);
-            padding: 3rem 2rem;
+            padding: 2rem;
         }
 
         .footer-content {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -1238,13 +642,13 @@
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             transition: color 0.2s;
         }
 
@@ -1254,7 +658,7 @@
 
         .footer-copy {
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
         }
 
         /* Modal */
@@ -1265,11 +669,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 2000;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(4px);
         }
 
         .modal-overlay.active {
@@ -1282,15 +685,7 @@
             border-radius: 16px;
             padding: 2rem;
             width: 90%;
-            max-width: 450px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalIn 0.3s ease;
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            max-width: 400px;
         }
 
         .modal-header {
@@ -1301,8 +696,8 @@
         }
 
         .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: white;
         }
 
@@ -1312,7 +707,6 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-muted);
-            transition: color 0.2s;
         }
 
         .modal-close:hover {
@@ -1325,60 +719,62 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            margin-bottom: 0.375rem;
             font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
         .form-group input {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.625rem 0.875rem;
             background: var(--background);
             border: 1px solid var(--card-border);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             color: white;
-            transition: border-color 0.3s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--accent-green);
-        }
-
-        .form-group input::placeholder {
-            color: var(--text-muted);
+            border-color: var(--accent);
         }
 
         .form-error {
-            color: var(--accent-red);
-            font-size: 0.875rem;
+            color: #f4212e;
+            font-size: 0.8125rem;
             margin-top: 0.25rem;
         }
 
         .form-footer {
-            margin-top: 1.5rem;
+            margin-top: 1.25rem;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.875rem;
         }
 
         .form-footer a {
-            color: var(--accent-green);
+            color: var(--accent);
             cursor: pointer;
-            text-decoration: none;
         }
 
-        .form-footer a:hover {
-            text-decoration: underline;
+        .demo-info {
+            background: var(--background);
+            border-radius: 8px;
+            padding: 0.875rem;
+            margin-top: 1rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .demo-info strong {
+            color: var(--accent);
         }
 
         /* Pages */
         .page {
             display: none;
-            min-height: calc(100vh - 64px);
-            padding-top: 64px;
+            min-height: calc(100vh - 60px);
+            padding-top: 60px;
         }
 
         .page.active {
@@ -1387,20 +783,20 @@
 
         /* Dashboard */
         .dashboard-header {
-            background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
-            padding: 3rem 2rem;
+            background: var(--background-secondary);
+            padding: 2rem;
             border-bottom: 1px solid var(--card-border);
         }
 
         .dashboard-header h1 {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .dashboard-content {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -1408,7 +804,7 @@
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
@@ -1416,310 +812,20 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
         .dashboard-stat h3 {
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.375rem;
         }
 
         .dashboard-stat .value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-
-        /* Data Table */
-        .data-table {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .data-table th {
-            background: var(--background);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .data-table tr:hover {
-            background: rgba(0, 210, 106, 0.05);
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .status-active {
-            background: rgba(0, 210, 106, 0.1);
-            color: var(--accent-green);
-        }
-
-        .status-pending {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent-gold);
-        }
-
-        /* Payment Methods */
-        .payment-methods {
-            display: grid;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .payment-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--background);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .payment-method:hover {
-            border-color: var(--accent-green);
-        }
-
-        .payment-method.selected {
-            border-color: var(--accent-green);
-            background: rgba(0, 210, 106, 0.05);
-        }
-
-        .payment-method input {
-            display: none;
-        }
-
-        .payment-icon {
-            font-size: 2rem;
-            width: 50px;
-            text-align: center;
-        }
-
-        .payment-info h4 {
-            font-weight: 600;
-            color: white;
-        }
-
-        .payment-info p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Video Player */
-        .video-container {
-            position: relative;
-            background: black;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            border: 1px solid var(--card-border);
-        }
-
-        .video-locked {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .video-locked h3 {
             font-size: 1.5rem;
-            margin: 1rem 0;
-        }
-
-        /* Lesson List */
-        .lesson-list {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .lesson-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--card-border);
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .lesson-item:last-child {
-            border-bottom: none;
-        }
-
-        .lesson-item:hover {
-            background: rgba(0, 210, 106, 0.05);
-        }
-
-        .lesson-item.active {
-            background: rgba(0, 210, 106, 0.1);
-            border-left: 3px solid var(--accent-green);
-        }
-
-        .lesson-item.locked {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .lesson-number {
-            width: 32px;
-            height: 32px;
-            background: var(--background);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-weight: 600;
-            color: var(--accent-green);
-            font-size: 0.875rem;
-        }
-
-        .lesson-item.completed .lesson-number {
-            background: var(--accent-green);
-            color: black;
-        }
-
-        .lesson-info {
-            flex: 1;
-        }
-
-        .lesson-title {
-            font-weight: 600;
-            color: white;
-        }
-
-        .lesson-duration {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Admin Tabs */
-        .admin-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 1rem;
-        }
-
-        .admin-tab {
-            padding: 0.5rem 1rem;
-            border: none;
-            background: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--text-muted);
-            border-bottom: 2px solid transparent;
-            margin-bottom: -1rem;
-            padding-bottom: calc(1rem + 2px);
-            transition: all 0.2s;
-        }
-
-        .admin-tab:hover {
-            color: white;
-        }
-
-        .admin-tab.active {
-            color: var(--accent-green);
-            border-bottom-color: var(--accent-green);
-        }
-
-        /* Toast */
-        .toast-container {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 3000;
-        }
-
-        .toast {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 0.5rem;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Alert */
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid;
-        }
-
-        .alert-success {
-            background: rgba(0, 210, 106, 0.1);
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        .alert-error {
-            background: rgba(255, 71, 87, 0.1);
-            border-color: var(--accent-red);
-            color: var(--accent-red);
-        }
-
-        .alert-info {
-            background: rgba(0, 210, 106, 0.05);
-            border-color: var(--card-border);
-            color: var(--text-secondary);
-        }
-
-        .alert a {
-            color: var(--accent-green);
-        }
-
-        /* Demo Info */
-        .demo-info {
-            background: rgba(0, 210, 106, 0.05);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-size: 0.875rem;
-        }
-
-        .demo-info strong {
-            color: var(--accent-green);
+            color: var(--accent);
         }
 
         /* Responsive */
@@ -1729,23 +835,19 @@
                 text-align: center;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                margin: 0 auto 2rem;
+            .hero-text p {
+                margin: 0 auto 1.5rem;
             }
 
             .hero-buttons {
                 justify-content: center;
             }
 
-            .hero-features {
+            .hero-note {
                 justify-content: center;
             }
 
-            .screenshot-container {
+            .hero-image {
                 max-width: 500px;
                 margin: 0 auto;
             }
@@ -1766,8 +868,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .dashboard-stats {
+            .instructor-content {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .instructor-avatar {
+                margin: 0 auto;
             }
         }
 
@@ -1776,30 +883,22 @@
                 padding: 0 1rem;
             }
 
-            .nav-links {
-                gap: 0.25rem;
-            }
-
             .nav-links a, .nav-links button {
-                padding: 0.5rem;
-                font-size: 0.75rem;
+                padding: 0.375rem 0.625rem;
+                font-size: 0.8125rem;
             }
 
             .hero {
-                padding: 6rem 1rem 3rem;
+                padding: 5rem 1rem 3rem;
             }
 
-            .hero h1 {
+            .hero-text h1 {
                 font-size: 2rem;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
-            }
-
-            .stat-value {
-                font-size: 1.75rem;
             }
 
             .features-grid {
@@ -1812,15 +911,9 @@
                 text-align: center;
             }
 
-            .course-layout {
-                grid-template-columns: 1fr !important;
+            .dashboard-stats {
+                grid-template-columns: 1fr;
             }
-        }
-
-        /* Blur protection */
-        .blur-protection {
-            filter: blur(20px);
-            pointer-events: none;
         }
     </style>
 </head>
@@ -1829,153 +922,61 @@
     <nav class="navbar">
         <div class="navbar-content">
             <a href="#" class="logo" onclick="showPage('home')">
-                <div class="logo-icon">
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                </div>
-                TradeMaster<span>Pro</span>
+                <div class="logo-icon">📊</div>
+                TradeMaster Academy
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="#" onclick="showPage('home')">Strona Glowna</a>
-                <a href="#courses-section" onclick="showPage('home')">Kursy</a>
-                <button class="btn btn-outline" onclick="showModal('login')">Zaloguj</button>
-                <button class="btn btn-primary" onclick="showModal('register')">Dolacz teraz</button>
+                <a href="#" onclick="showPage('home')">Start</a>
+                <a href="#courses-section">Kursy</a>
+                <a href="#faq-section">FAQ</a>
+                <button class="btn btn-secondary" onclick="showModal('login')">Zaloguj</button>
+                <button class="btn btn-primary" onclick="showModal('register')">Rozpocznij</button>
             </div>
             <div class="nav-links" id="navLinksLoggedIn" style="display: none;">
-                <a href="#" onclick="showPage('home')">Strona Glowna</a>
-                <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                <a href="#" onclick="showPage('home')">Start</a>
+                <a href="#" onclick="showPage('dashboard')">Moje kursy</a>
                 <a href="#" onclick="showPage('admin')" id="adminLink" style="display: none;">Admin</a>
-                <span id="userEmail" style="color: var(--text-muted); font-size: 0.875rem;"></span>
-                <button class="btn btn-outline" onclick="logout()">Wyloguj</button>
+                <span id="userEmail" style="color: var(--text-muted); font-size: 0.8125rem;"></span>
+                <button class="btn btn-secondary" onclick="logout()">Wyloguj</button>
             </div>
         </div>
     </nav>
 
     <!-- Home Page -->
     <div class="page active" id="page-home">
-        <!-- Price Ticker -->
-        <div class="price-ticker" style="position: fixed; top: 64px; z-index: 999;">
-            <div class="ticker-content" id="priceTicker">
-                <div class="ticker-item"><span class="ticker-symbol">EUR/USD</span><span class="ticker-price" id="price-eurusd">1.0847</span><span class="ticker-change up">+0.12%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">GBP/USD</span><span class="ticker-price">1.2634</span><span class="ticker-change up">+0.08%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">BTC/USD</span><span class="ticker-price" id="price-btc">43,250</span><span class="ticker-change up">+2.34%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">ETH/USD</span><span class="ticker-price">2,285</span><span class="ticker-change down">-0.45%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">USD/JPY</span><span class="ticker-price">148.52</span><span class="ticker-change up">+0.21%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">XAU/USD</span><span class="ticker-price" id="price-gold">2,048</span><span class="ticker-change up">+0.67%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">SPX500</span><span class="ticker-price">4,782</span><span class="ticker-change up">+0.45%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">NAS100</span><span class="ticker-price">16,845</span><span class="ticker-change down">-0.12%</span></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="ticker-item"><span class="ticker-symbol">EUR/USD</span><span class="ticker-price">1.0847</span><span class="ticker-change up">+0.12%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">GBP/USD</span><span class="ticker-price">1.2634</span><span class="ticker-change up">+0.08%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">BTC/USD</span><span class="ticker-price">43,250</span><span class="ticker-change up">+2.34%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">ETH/USD</span><span class="ticker-price">2,285</span><span class="ticker-change down">-0.45%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">USD/JPY</span><span class="ticker-price">148.52</span><span class="ticker-change up">+0.21%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">XAU/USD</span><span class="ticker-price">2,048</span><span class="ticker-change up">+0.67%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">SPX500</span><span class="ticker-price">4,782</span><span class="ticker-change up">+0.45%</span></div>
-                <div class="ticker-item"><span class="ticker-symbol">NAS100</span><span class="ticker-price">16,845</span><span class="ticker-change down">-0.12%</span></div>
-            </div>
-        </div>
-
         <!-- Hero -->
-        <section class="hero" style="padding-top: 10rem;">
+        <section class="hero">
             <div class="hero-content">
-                <div>
-                    <div class="market-status"><span class="dot"></span> Rynki otwarte - sesja europejska</div>
-                    <div class="hero-badge">Nowy kurs 2025 dostepny</div>
-                    <h1>
-                        Zarabiaj na rynkach
-                        <span class="animated-gradient">jak profesjonalisci</span>
-                    </h1>
-                    <p>Dolacz do ponad 2,800 traderow, ktorzy zmienili swoje podejscie do tradingu dzieki sprawdzonym strategiom i wsparciu ekspertow.</p>
+                <div class="hero-text">
+                    <h1>Naucz sie tradingu od podstaw</h1>
+                    <p>Praktyczne kursy online z analizy technicznej i zarzadzania ryzykiem. Ucz sie we wlasnym tempie z dostepem do materialow 24/7.</p>
                     <div class="hero-buttons">
-                        <a href="#courses-section" class="btn btn-primary btn-lg">
-                            Rozpocznij nauke
-                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
-                        <a href="#results" class="btn btn-secondary btn-lg">Zobacz wyniki</a>
+                        <a href="#courses-section" class="btn btn-primary btn-lg">Zobacz kursy</a>
+                        <a href="#about-section" class="btn btn-secondary btn-lg">Dowiedz sie wiecej</a>
                     </div>
-                    <div class="hero-features">
-                        <span>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                            </svg>
-                            Dozywotni dostep
-                        </span>
-                        <span>
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                            </svg>
-                            Wsparcie 24/7
-                        </span>
+                    <div class="hero-note">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        Dostep do materialow przez 12 miesiecy
                     </div>
                 </div>
-                <div class="screenshot-container">
-                    <div class="screenshot-glow"></div>
-                    <div class="screenshot-window">
-                        <div class="screenshot-header">
-                            <div class="screenshot-dot red"></div>
-                            <div class="screenshot-dot yellow"></div>
-                            <div class="screenshot-dot green"></div>
-                            <span class="screenshot-title">TradingView - EUR/USD</span>
-                        </div>
-                        <div class="screenshot-body">
-                            <!-- Animated Trading Line -->
-                            <div class="trading-line">
-                                <svg viewBox="0 0 400 200" preserveAspectRatio="none">
-                                    <defs>
-                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" style="stop-color:#00d26a"/>
-                                            <stop offset="50%" style="stop-color:#ffd700"/>
-                                            <stop offset="100%" style="stop-color:#00d26a"/>
-                                        </linearGradient>
-                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#00d26a;stop-opacity:0.3"/>
-                                            <stop offset="100%" style="stop-color:#00d26a;stop-opacity:0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path class="glow" d="M0,150 Q50,120 100,130 T200,80 T300,100 T400,60"/>
-                                    <path d="M0,150 Q50,120 100,130 T200,80 T300,100 T400,60"/>
-                                </svg>
-                            </div>
-                            <!-- Animated Candles -->
-                            <div class="chart-placeholder">
-                                <div class="chart-candles">
-                                    <div class="candle"></div>
-                                    <div class="candle red"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle red"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle red"></div>
-                                    <div class="candle"></div>
-                                    <div class="candle"></div>
-                                </div>
-                            </div>
-                            <!-- Floating Price Bubbles -->
-                            <div class="floating-prices" id="floatingPrices"></div>
-                            <!-- Trade Signals -->
-                            <div class="trade-signals" id="tradeSignals"></div>
-                        </div>
+                <div class="hero-image">
+                    <div class="chart-header">
+                        <span class="chart-title">Przykladowy wykres</span>
+                        <span class="chart-badge">Demo</span>
                     </div>
-                    <!-- Live Badge -->
-                    <div class="live-badge" style="position: absolute; top: -0.5rem; right: 1rem;">
-                        <span class="rec-dot"></span> LIVE
-                    </div>
-                    <!-- Profit Float with Animation -->
-                    <div class="profit-float glow-border">
-                        <div class="profit-float-label">Dzisiejszy zysk</div>
-                        <div class="profit-float-value profit-counter" id="profitCounter">+$2,847</div>
-                    </div>
-                    <!-- Second Float - Win Rate -->
-                    <div class="profit-float" style="bottom: -1rem; left: auto; right: -1rem; border-color: var(--accent-gold);">
-                        <div class="profit-float-label">Win Rate</div>
-                        <div class="profit-float-value" style="color: var(--accent-gold);" id="winRateCounter">87%</div>
+                    <div class="chart-area">
+                        <div class="chart-bar" style="height: 45%"></div>
+                        <div class="chart-bar" style="height: 52%"></div>
+                        <div class="chart-bar" style="height: 38%"></div>
+                        <div class="chart-bar" style="height: 61%"></div>
+                        <div class="chart-bar" style="height: 55%"></div>
+                        <div class="chart-bar" style="height: 72%"></div>
+                        <div class="chart-bar" style="height: 68%"></div>
+                        <div class="chart-bar" style="height: 58%"></div>
+                        <div class="chart-bar" style="height: 75%"></div>
+                        <div class="chart-bar" style="height: 82%"></div>
+                        <div class="chart-bar" style="height: 78%"></div>
+                        <div class="chart-bar" style="height: 85%"></div>
                     </div>
                 </div>
             </div>
@@ -1985,133 +986,156 @@
         <section class="stats-section">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-value">2,847+</div>
-                    <div class="stat-label">Aktywnych studentow</div>
+                    <div class="stat-value">450+</div>
+                    <div class="stat-label">Ukonczonych kursow</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">89%</div>
-                    <div class="stat-label">Wskaznik sukcesu</div>
+                    <div class="stat-value">32</div>
+                    <div class="stat-label">Lekcje wideo</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">€4.2M+</div>
-                    <div class="stat-label">Wypracowany zysk studentow</div>
+                    <div class="stat-value">12h</div>
+                    <div class="stat-label">Materialow wideo</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">15+</div>
-                    <div class="stat-label">Lat doswiadczenia</div>
+                    <div class="stat-value">4.6/5</div>
+                    <div class="stat-label">Srednia ocena</div>
                 </div>
             </div>
         </section>
 
         <!-- Features -->
-        <section class="section" style="background: rgba(22, 27, 34, 0.3);">
+        <section class="section" id="about-section">
             <div class="section-header">
-                <h2 class="section-title">Co otrzymujesz w kursie?</h2>
-                <p class="section-subtitle">Kompleksowe szkolenie tradingowe z wszystkim, czego potrzebujesz, zeby zaczac zarabiac na rynkach.</p>
+                <h2 class="section-title">Czego sie nauczysz?</h2>
+                <p class="section-subtitle">Kursy obejmuja praktyczne aspekty tradingu, od podstaw po zaawansowane techniki.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">✓</div>
-                    <h3 class="feature-title">Sprawdzone strategie</h3>
-                    <p class="feature-description">Strategie przetestowane na rynkach przez ponad 15 lat. Zadnych teorii - tylko to, co dziala.</p>
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Analiza techniczna</h3>
+                    <p class="feature-description">Nauka czytania wykresow, rozpoznawania formacji cenowych i wykorzystywania wskaznikow technicznych.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📹</div>
-                    <h3 class="feature-title">Live Trading Sessions</h3>
-                    <p class="feature-description">Cotygodniowe sesje live gdzie analizujemy rynek w czasie rzeczywistym i szukamy setupow.</p>
+                    <div class="feature-icon">⚖️</div>
+                    <h3 class="feature-title">Zarzadzanie ryzykiem</h3>
+                    <p class="feature-description">Jak prawidlowo ustawiac stop-loss, okreslac wielkosc pozycji i chronic kapital.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">Wsparcie mentora</h3>
-                    <p class="feature-description">Bezposredni dostep do mentora. Odpowiedzi na pytania, analiza Twoich trade'ow.</p>
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Psychologia tradingu</h3>
+                    <p class="feature-description">Radzenie sobie z emocjami, dyscyplina i budowanie odpowiedniego podejscia do rynku.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3 class="feature-title">Risk Management</h3>
-                    <p class="feature-description">Nauczysz sie profesjonalnego zarzadzania ryzykiem i kapitalem - klucz do sukcesu.</p>
+                    <div class="feature-icon">📋</div>
+                    <h3 class="feature-title">Plan tradingowy</h3>
+                    <p class="feature-description">Tworzenie i testowanie wlasnej strategii tradingowej krok po kroku.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="feature-title">Narzedzia i platformy</h3>
+                    <p class="feature-description">Praktyczna nauka obslugi popularnych platform tradingowych i narzedzi analitycznych.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Analiza rynku</h3>
+                    <p class="feature-description">Jak analizowac rozne rynki - forex, akcje, indeksy i kryptowaluty.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor -->
+        <section class="section instructor-section">
+            <div class="instructor-content">
+                <div class="instructor-avatar">👨‍💼</div>
+                <div>
+                    <h3 class="instructor-name">O prowadzacym</h3>
+                    <p class="instructor-title">Trader i edukator z wieloletnim doswiadczeniem</p>
+                    <p class="instructor-bio">Kursy prowadzone sa przez praktyka rynkow finansowych z ponad 8-letnim doswiadczeniem. Materialy oparte sa na realnych przykladach i praktycznych cwiczeniach, nie na teoretycznych obietnicach.</p>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials -->
-        <section class="section" id="results">
+        <section class="section">
             <div class="section-header">
-                <h2 class="section-title">Co mowia nasi studenci?</h2>
-                <p class="section-subtitle">Dolacz do spolecznosci traderow, ktorzy juz zmienili swoje zycie.</p>
+                <h2 class="section-title">Opinie uczestnikow</h2>
+                <p class="section-subtitle">Co mowia osoby, ktore ukonczyly nasze kursy.</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Po 6 miesiacach kursu rzucilem prace i traduje full-time. Strategia price action zmienila moje podejscie do rynkow."</p>
-                    <div class="testimonial-footer">
+                    <p class="testimonial-text">"Dobrze ulozone materialy, jasne tlumaczenie. Wkoncu zrozumialem jak dziala analiza techniczna. Polecam osobom poczatkujacym."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
                         <div>
-                            <div class="testimonial-author">Marcin K.</div>
-                            <div class="testimonial-role">Full-time Trader od 2023</div>
+                            <div class="testimonial-name">Michal</div>
+                            <div class="testimonial-role">Uczestnik kursu podstawowego</div>
                         </div>
-                        <div class="testimonial-profit">+340% ROI</div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Najlepsza inwestycja w siebie. Jasne tlumaczenie, swietna spolecznosc i realne wyniki. Polecam kazdemu."</p>
-                    <div class="testimonial-footer">
+                    <p class="testimonial-text">"Ceniona wartosc to praktyczne podejscie. Zadnych pustych obietnic, konkretna wiedza ktora mozna zastosowac. Warto zainwestowac w edukacje."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
                         <div>
-                            <div class="testimonial-author">Anna W.</div>
-                            <div class="testimonial-role">Inwestorka, Warszawa</div>
+                            <div class="testimonial-name">Anna</div>
+                            <div class="testimonial-role">Uczestniczka kursu zaawansowanego</div>
                         </div>
-                        <div class="testimonial-profit">+€28,500</div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Wreszcie kurs, ktory uczy prawdziwego tradingu a nie teorii. Support jest niesamowity."</p>
-                    <div class="testimonial-footer">
+                    <p class="testimonial-text">"Szukalem solidnego kursu bez typowego marketingu 'zarabiaj miliony'. Ten kurs jest rzeczowy i uczciwy w swoim przekazie."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">T</div>
                         <div>
-                            <div class="testimonial-author">Tomasz P.</div>
-                            <div class="testimonial-role">Trader Forex</div>
+                            <div class="testimonial-name">Tomasz</div>
+                            <div class="testimonial-role">Uczestnik kursu podstawowego</div>
                         </div>
-                        <div class="testimonial-profit">+67% Q4</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Courses -->
-        <section class="section" id="courses-section" style="background: rgba(22, 27, 34, 0.3);">
+        <section class="section" id="courses-section" style="background: var(--background-secondary); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
             <div class="section-header">
-                <h2 class="section-title">Wybierz swoj kurs</h2>
-                <p class="section-subtitle">Znajdz kurs dopasowany do Twojego poziomu i celow tradingowych.</p>
+                <h2 class="section-title">Dostepne kursy</h2>
+                <p class="section-subtitle">Wybierz kurs dopasowany do Twojego poziomu zaawansowania.</p>
             </div>
             <div class="courses-grid">
                 <div class="course-card">
-                    <div class="course-image">📊</div>
+                    <div class="course-header">
+                        <div class="course-level">Poziom podstawowy</div>
+                        <h3 class="course-title">Trading od podstaw</h3>
+                    </div>
                     <div class="course-content">
-                        <span class="course-badge badge-beginner">Podstawowy</span>
-                        <h3 class="course-title">Trading od Podstaw</h3>
-                        <p class="course-description">Idealny kurs dla poczatkujacych. Poznasz podstawy analizy technicznej, zarzadzania ryzykiem i psychologii tradingu.</p>
+                        <p class="course-description">Kurs dla osob poczatkujacych. Nauczysz sie podstaw analizy technicznej, zarzadzania ryzykiem i korzystania z platform tradingowych.</p>
                         <div class="course-meta">
                             <span>📚 12 lekcji</span>
-                            <span>⏱️ 8 godzin</span>
+                            <span>⏱️ 6 godzin</span>
+                            <span>📝 Materialy PDF</span>
                         </div>
                         <div class="course-footer">
-                            <div class="course-price">299 PLN</div>
-                            <button class="btn btn-primary" onclick="showCourseDetails('basic')">Zobacz Wiecej</button>
+                            <div class="course-price">299 zl <span>/ dostep 12 mies.</span></div>
+                            <button class="btn btn-primary" onclick="showCourseDetails('basic')">Szczegoly</button>
                         </div>
                     </div>
                 </div>
-                <div class="course-card premium">
-                    <div class="course-image">🚀</div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-level">Poziom zaawansowany</div>
+                        <h3 class="course-title">Strategie i analiza</h3>
+                    </div>
                     <div class="course-content">
-                        <span class="course-badge badge-advanced">Zaawansowany</span>
-                        <h3 class="course-title">Zaawansowane Strategie</h3>
-                        <p class="course-description">Dla tych, ktorzy chca wyjsc na wyzszy poziom. Zaawansowana analiza, strategie day tradingu i scalping.</p>
+                        <p class="course-description">Dla osob znajacych podstawy. Zaawansowane formacje, strategie day tradingu, analiza wolumenu i budowanie systemu tradingowego.</p>
                         <div class="course-meta">
                             <span>📚 20 lekcji</span>
-                            <span>⏱️ 15 godzin</span>
+                            <span>⏱️ 10 godzin</span>
+                            <span>📝 Materialy PDF</span>
                         </div>
                         <div class="course-footer">
-                            <div class="course-price">599 PLN</div>
-                            <button class="btn btn-primary" onclick="showCourseDetails('advanced')">Zobacz Wiecej</button>
+                            <div class="course-price">499 zl <span>/ dostep 12 mies.</span></div>
+                            <button class="btn btn-primary" onclick="showCourseDetails('advanced')">Szczegoly</button>
                         </div>
                     </div>
                 </div>
@@ -2119,46 +1143,45 @@
         </section>
 
         <!-- FAQ -->
-        <section class="section">
+        <section class="section" id="faq-section">
             <div class="section-header">
-                <h2 class="section-title">Czesto zadawane pytania</h2>
+                <h2 class="section-title">Czeste pytania</h2>
             </div>
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Czy kurs jest odpowiedni dla poczatkujacych?
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                        Czy kurs gwarantuje zyski z tradingu?
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Tak! Mamy dedykowany modul dla poczatkujacych, ktory przeprowadzi Cie przez podstawy tradingu krok po kroku. Nie musisz miec zadnego doswiadczenia.</div>
+                    <div class="faq-answer">Nie. Zaden kurs nie moze gwarantowac zyskow. Trading wiaze sie z ryzykiem utraty kapitalu. Kurs dostarcza wiedze i narzedzia, ale wyniki zaleza od wielu czynnikow, w tym od rynku i indywidualnych decyzji.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
                         Jak dlugo mam dostep do materialow?
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Dostep do materialow jest dozywotni. Kupujesz raz i masz dostep na zawsze, wlacznie z wszystkimi przyszlymi aktualizacjami.</div>
+                    <div class="faq-answer">Dostep do materialow trwa 12 miesiecy od momentu zakupu. W tym czasie mozesz wracac do lekcji dowolna ilosc razy.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Ile czasu musze poswiecic na nauke?
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                        Czy potrzebuje wczesniejszego doswiadczenia?
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Zalecamy minimum 1-2 godziny dziennie na nauke i praktyke. Im wiecej czasu poswiecisz, tym szybciej zobaczysz wyniki.</div>
+                    <div class="faq-answer">Kurs podstawowy jest przeznaczony dla osob poczatkujacych - nie wymagamy wczesniejszego doswiadczenia. Kurs zaawansowany wymaga znajomosci podstaw.</div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)">
-                        Czy moge zarabiac tradujac part-time?
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                        Czy moge uzyskac zwrot pieniedzy?
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="faq-answer">Absolutnie tak. Wielu naszych studentow traduje 2-3 godziny dziennie i osiaga swietne wyniki. Nauczymy Cie jak znalezc najlepsze sesje pod Twoj harmonogram.</div>
+                    <div class="faq-answer">Tak, oferujemy 14-dniowa gwarancje zwrotu. Jesli kurs nie spelni Twoich oczekiwan, skontaktuj sie z nami w ciagu 14 dni od zakupu.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Ile kapitalu potrzebuje na start?
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer">Na poczatku zalecamy cwiczenie na kontach demo (bez ryzyka prawdziwych pieniedzy). Gdy zdecydujesz sie tradowac realnie, zacznij od kwoty, ktorej ewentualna utrata nie wplynie znaczaco na Twoja sytuacje finansowa.</div>
                 </div>
             </div>
         </section>
@@ -2166,15 +1189,17 @@
         <!-- CTA -->
         <section class="cta-section">
             <div class="cta-content">
-                <h2 class="cta-title">Gotowy, zeby zmienic swoje zycie?</h2>
-                <p class="cta-subtitle">Dolacz do tysiecy traderow, ktorzy juz zarabiaja na rynkach. Rozpocznij swoja podroz dzisiaj.</p>
-                <a href="#courses-section" class="btn btn-primary btn-lg">
-                    Dolacz teraz
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                </a>
-                <p class="cta-guarantee">30-dniowa gwarancja zwrotu pieniedzy</p>
+                <h2 class="cta-title">Zacznij nauke juz dzisiaj</h2>
+                <p class="cta-subtitle">Dołacz do kursu i rozwijaj swoje umiejetnosci tradingowe we wlasnym tempie.</p>
+                <a href="#courses-section" class="btn btn-primary btn-lg">Zobacz dostepne kursy</a>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer">
+            <div class="disclaimer-content">
+                <div class="disclaimer-title">Wazne zastrzezenie</div>
+                <p class="disclaimer-text">Trading na rynkach finansowych wiaze sie z wysokim ryzykiem utraty kapitalu. Wyniki osiagane w przeszlosci nie gwarantuja wynikow w przyszlosci. Przed podjęciem decyzji inwestycyjnych nalezy rozwazyc swoja sytuacje finansowa i w razie potrzeby skonsultowac sie z niezaleznym doradca finansowym. Materialy edukacyjne nie stanowia rekomendacji inwestycyjnych.</p>
             </div>
         </section>
 
@@ -2182,19 +1207,15 @@
         <footer class="footer">
             <div class="footer-content">
                 <a href="#" class="logo" onclick="showPage('home')">
-                    <div class="logo-icon">
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                    </div>
-                    TradeMaster<span>Pro</span>
+                    <div class="logo-icon">📊</div>
+                    TradeMaster Academy
                 </a>
-                <div class="footer-copy">© 2025 TradeMasterPro. Wszelkie prawa zastrzezone.</div>
                 <div class="footer-links">
                     <a href="#">Regulamin</a>
                     <a href="#">Polityka prywatnosci</a>
                     <a href="#">Kontakt</a>
                 </div>
+                <div class="footer-copy">© 2025 TradeMaster Academy</div>
             </div>
         </footer>
     </div>
@@ -2202,80 +1223,37 @@
     <!-- Dashboard Page -->
     <div class="page" id="page-dashboard">
         <div class="dashboard-header">
-            <h1>Witaj, <span id="dashboardUserName">Uzytkowniku</span>!</h1>
+            <h1>Moje kursy</h1>
         </div>
         <div class="dashboard-content">
             <div class="dashboard-stats">
                 <div class="dashboard-stat">
-                    <h3>Zakupione Kursy</h3>
+                    <h3>Zakupione kursy</h3>
                     <div class="value" id="purchasedCoursesCount">0</div>
                 </div>
                 <div class="dashboard-stat">
-                    <h3>Ukonczonych Lekcji</h3>
+                    <h3>Ukonczone lekcje</h3>
                     <div class="value" id="completedLessonsCount">0</div>
                 </div>
                 <div class="dashboard-stat">
-                    <h3>Twoj Postep</h3>
+                    <h3>Postep</h3>
                     <div class="value" id="progressPercent">0%</div>
                 </div>
             </div>
-
-            <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Twoje Kursy</h2>
-            <div class="courses-grid" id="userCourses" style="max-width: 100%;">
-                <div class="alert alert-info">
-                    Nie masz jeszcze zadnych kursow. <a href="#" onclick="showPage('home')">Przegladaj kursy</a>
-                </div>
+            <div id="userCourses">
+                <p style="color: var(--text-muted);">Nie masz jeszcze zadnych kursow. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przegladaj kursy</a></p>
             </div>
-
-            <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Historia Platnosci</h2>
-            <table class="data-table" id="paymentHistory">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Kurs</th>
-                        <th>Metoda</th>
-                        <th>Kwota</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="paymentHistoryBody">
-                    <tr>
-                        <td colspan="5" style="text-align: center; color: var(--text-muted);">Brak historii platnosci</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 
     <!-- Course Detail Page -->
     <div class="page" id="page-course">
-        <div class="dashboard-header" id="courseHeader">
+        <div class="dashboard-header">
             <h1 id="courseTitle">Kurs</h1>
         </div>
         <div class="dashboard-content">
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;" class="course-layout">
-                <div>
-                    <div class="video-container" id="videoContainer">
-                        <div class="video-locked" id="videoLocked">
-                            <span style="font-size: 4rem;">🔒</span>
-                            <h3>Kurs Zablokowany</h3>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">Kup kurs, aby uzyskac dostep do materialow</p>
-                            <button class="btn btn-primary" onclick="showModal('payment')">Kup Teraz</button>
-                        </div>
-                        <video class="video-player" id="videoPlayer" style="display: none; width: 100%; height: 100%;" controls controlsList="nodownload">
-                            <source src="" type="video/mp4">
-                        </video>
-                        <div id="videoWatermark" style="position: absolute; color: rgba(255,255,255,0.3); font-size: 0.875rem; pointer-events: none; padding: 0.5rem;"></div>
-                    </div>
-                    <div style="margin-top: 1rem;">
-                        <h3 id="currentLessonTitle" style="font-size: 1.25rem; font-weight: 600;">Wybierz lekcje z listy</h3>
-                        <p id="currentLessonDescription" style="color: var(--text-muted); margin-top: 0.5rem;"></p>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="margin-bottom: 1rem; font-size: 1.125rem; font-weight: 600;">Lekcje</h3>
-                    <div class="lesson-list" id="lessonList"></div>
-                </div>
+            <div id="courseContent">
+                <p style="color: var(--text-muted);">Ladowanie...</p>
             </div>
         </div>
     </div>
@@ -2283,128 +1261,10 @@
     <!-- Admin Page -->
     <div class="page" id="page-admin">
         <div class="dashboard-header">
-            <h1>Panel Administratora</h1>
+            <h1>Panel administratora</h1>
         </div>
         <div class="dashboard-content">
-            <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchAdminTab('courses')">Kursy</button>
-                <button class="admin-tab" onclick="switchAdminTab('users')">Uzytkownicy</button>
-                <button class="admin-tab" onclick="switchAdminTab('payments')">Platnosci</button>
-                <button class="admin-tab" onclick="switchAdminTab('settings')">Ustawienia</button>
-            </div>
-
-            <div id="admin-courses" class="admin-panel-content">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2 style="font-size: 1.25rem;">Zarzadzanie Kursami</h2>
-                    <button class="btn btn-primary" onclick="showToast('Demo: Dodawanie kursow')">+ Dodaj Kurs</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Nazwa</th>
-                            <th>Poziom</th>
-                            <th>Cena</th>
-                            <th>Lekcje</th>
-                            <th>Sprzedane</th>
-                            <th>Akcje</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Trading od Podstaw</td>
-                            <td><span class="course-badge badge-beginner">Podstawowy</span></td>
-                            <td>299 PLN</td>
-                            <td>12</td>
-                            <td>156</td>
-                            <td><button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.75rem;" onclick="showToast('Demo: Edycja kursu')">Edytuj</button></td>
-                        </tr>
-                        <tr>
-                            <td>Zaawansowane Strategie</td>
-                            <td><span class="course-badge badge-advanced">Zaawansowany</span></td>
-                            <td>599 PLN</td>
-                            <td>20</td>
-                            <td>89</td>
-                            <td><button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.75rem;" onclick="showToast('Demo: Edycja kursu')">Edytuj</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="admin-users" class="admin-panel-content" style="display: none;">
-                <h2 style="margin-bottom: 1rem; font-size: 1.25rem;">Uzytkownicy</h2>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Rola</th>
-                            <th>Data Rejestracji</th>
-                            <th>Zakupione Kursy</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminUsersTable"></tbody>
-                </table>
-            </div>
-
-            <div id="admin-payments" class="admin-panel-content" style="display: none;">
-                <h2 style="margin-bottom: 1rem; font-size: 1.25rem;">Historia Platnosci</h2>
-                <div class="dashboard-stats" style="margin-bottom: 2rem;">
-                    <div class="dashboard-stat">
-                        <h3>Laczne Przychody</h3>
-                        <div class="value">24,750 PLN</div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <h3>Ten Miesiac</h3>
-                        <div class="value">4,200 PLN</div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <h3>Sprzedanych Kursow</h3>
-                        <div class="value">245</div>
-                    </div>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Uzytkownik</th>
-                            <th>Kurs</th>
-                            <th>Metoda</th>
-                            <th>Kwota</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminPaymentsTable"></tbody>
-                </table>
-            </div>
-
-            <div id="admin-settings" class="admin-panel-content" style="display: none;">
-                <h2 style="margin-bottom: 1rem; font-size: 1.25rem;">Ustawienia Platformy</h2>
-                <div style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--card-border);">
-                    <div class="form-group">
-                        <label>Nazwa Platformy</label>
-                        <input type="text" value="TradeMasterPro">
-                    </div>
-                    <div class="form-group">
-                        <label>Email Kontaktowy</label>
-                        <input type="email" value="kontakt@trademasterpro.pl">
-                    </div>
-                    <div class="form-group">
-                        <label>Waluta</label>
-                        <input type="text" value="PLN" readonly style="opacity: 0.7;">
-                    </div>
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" checked style="width: auto;"> Wlacz rejestracje nowych uzytkownikow
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" checked style="width: auto;"> Wlacz znak wodny na filmach
-                        </label>
-                    </div>
-                    <button class="btn btn-primary" onclick="showToast('Ustawienia zapisane (demo)')">Zapisz Ustawienia</button>
-                </div>
-            </div>
+            <p style="color: var(--text-muted);">Panel administracyjny dostepny dla zalogowanych administratorow.</p>
         </div>
     </div>
 
@@ -2425,15 +1285,13 @@
                     <input type="password" id="loginPassword" required placeholder="Twoje haslo">
                 </div>
                 <div class="form-error" id="loginError"></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Zaloguj sie</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Zaloguj</button>
                 <div class="form-footer">
                     <p>Nie masz konta? <a onclick="hideModal('login'); showModal('register')">Zarejestruj sie</a></p>
                 </div>
             </form>
             <div class="demo-info">
-                <strong>Demo:</strong><br>
-                Admin: admin@demo.pl / admin123<br>
-                User: user@demo.pl / user123
+                <strong>Demo:</strong> admin@demo.pl / admin123
             </div>
         </div>
     </div>
@@ -2442,7 +1300,7 @@
     <div class="modal-overlay" id="modal-register">
         <div class="modal">
             <div class="modal-header">
-                <h2 class="modal-title">Zarejestruj sie</h2>
+                <h2 class="modal-title">Zaloz konto</h2>
                 <button class="modal-close" onclick="hideModal('register')">&times;</button>
             </div>
             <form onsubmit="handleRegister(event)">
@@ -2458,14 +1316,10 @@
                     <label>Haslo</label>
                     <input type="password" id="registerPassword" required minlength="6" placeholder="Min. 6 znakow">
                 </div>
-                <div class="form-group">
-                    <label>Powtorz Haslo</label>
-                    <input type="password" id="registerPasswordConfirm" required placeholder="Powtorz haslo">
-                </div>
                 <div class="form-error" id="registerError"></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Zarejestruj sie</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Zaloz konto</button>
                 <div class="form-footer">
-                    <p>Masz juz konto? <a onclick="hideModal('register'); showModal('login')">Zaloguj sie</a></p>
+                    <p>Masz konto? <a onclick="hideModal('register'); showModal('login')">Zaloguj sie</a></p>
                 </div>
             </form>
         </div>
@@ -2475,249 +1329,56 @@
     <div class="modal-overlay" id="modal-payment">
         <div class="modal">
             <div class="modal-header">
-                <h2 class="modal-title">Kup Kurs</h2>
+                <h2 class="modal-title">Kup kurs</h2>
                 <button class="modal-close" onclick="hideModal('payment')">&times;</button>
             </div>
-            <div id="paymentCourseInfo">
-                <h3 id="paymentCourseName" style="font-size: 1.25rem; font-weight: 600;">Trading od Podstaw</h3>
-                <p style="color: var(--text-muted); font-size: 0.875rem;" id="paymentCourseDesc">Kurs podstawowy tradingu</p>
-                <div class="course-price" style="margin: 1rem 0;" id="paymentCoursePrice">299 PLN</div>
+            <div id="paymentInfo">
+                <p style="margin-bottom: 1rem; color: var(--text-muted);">Szczegoly zakupu pojawia sie tutaj.</p>
             </div>
-
-            <h4 style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">Wybierz metode platnosci:</h4>
-            <div class="payment-methods">
-                <label class="payment-method" onclick="selectPayment('apple')">
-                    <input type="radio" name="payment" value="apple">
-                    <div class="payment-icon">🍎</div>
-                    <div class="payment-info">
-                        <h4>Apple Pay</h4>
-                        <p>Szybka platnosc przez Apple</p>
-                    </div>
-                </label>
-                <label class="payment-method" onclick="selectPayment('blik')">
-                    <input type="radio" name="payment" value="blik">
-                    <div class="payment-icon">📱</div>
-                    <div class="payment-info">
-                        <h4>BLIK</h4>
-                        <p>Platnosc kodem BLIK</p>
-                    </div>
-                </label>
-                <label class="payment-method" onclick="selectPayment('card')">
-                    <input type="radio" name="payment" value="card">
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-info">
-                        <h4>Karta Kredytowa/Debetowa</h4>
-                        <p>Visa, Mastercard, inne</p>
-                    </div>
-                </label>
-            </div>
-
-            <div id="blikInput" style="display: none;">
-                <div class="form-group">
-                    <label>Wprowadz kod BLIK</label>
-                    <input type="text" id="blikCode" maxlength="6" pattern="[0-9]{6}" placeholder="000000" style="text-align: center; font-size: 1.5rem; letter-spacing: 0.5rem;">
-                </div>
-            </div>
-
-            <div id="cardInput" style="display: none;">
-                <div class="form-group">
-                    <label>Numer Karty</label>
-                    <input type="text" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000">
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label>Data Waznosci</label>
-                        <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/RR">
-                    </div>
-                    <div class="form-group">
-                        <label>CVV</label>
-                        <input type="text" id="cardCvv" maxlength="4" placeholder="000">
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="processPayment()">Zaplac</button>
-            <p style="text-align: center; margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted);">
-                🔒 Platnosc jest bezpieczna i szyfrowana
-            </p>
+            <button class="btn btn-primary" style="width: 100%;" onclick="processPayment()">Zaplac</button>
+            <p style="text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">Platnosc jest bezpieczna i szyfrowana</p>
         </div>
     </div>
-
-    <!-- Payment Success Modal -->
-    <div class="modal-overlay" id="modal-payment-success">
-        <div class="modal" style="text-align: center;">
-            <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
-            <h2 style="margin-bottom: 1rem; font-size: 1.5rem;">Platnosc Zakonczona!</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Dziekujemy za zakup. Mozesz teraz rozpoczac nauke.</p>
-            <button class="btn btn-primary" onclick="hideModal('payment-success'); showPage('course');">Przejdz do Kursu</button>
-        </div>
-    </div>
-
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
 
     <script>
-        // ===========================================
-        // DATABASE (localStorage simulation)
-        // ===========================================
+        // Simple state management
         const DB = {
-            defaultUsers: [
-                { id: 'admin-1', email: 'admin@demo.pl', password: 'admin123', name: 'Administrator', role: 'ADMIN', createdAt: '2024-01-01' },
-                { id: 'user-1', email: 'user@demo.pl', password: 'user123', name: 'Jan Kowalski', role: 'USER', createdAt: '2024-06-15' }
+            users: [
+                { id: 'admin-1', email: 'admin@demo.pl', password: 'admin123', name: 'Admin', role: 'ADMIN' },
+                { id: 'user-1', email: 'user@demo.pl', password: 'user123', name: 'Jan', role: 'USER' }
             ],
             courses: {
-                basic: {
-                    id: 'basic',
-                    name: 'Trading od Podstaw',
-                    level: 'BEGINNER',
-                    description: 'Idealny kurs dla poczatkujacych. Poznasz podstawy analizy technicznej, zarzadzania ryzykiem i psychologii tradingu.',
-                    price: 299,
-                    lessons: [
-                        { id: 'b1', title: 'Wprowadzenie do tradingu', duration: '15:00', description: 'Poznaj podstawy rynkow finansowych.' },
-                        { id: 'b2', title: 'Rodzaje rynkow', duration: '20:00', description: 'Forex, akcje, kryptowaluty.' },
-                        { id: 'b3', title: 'Analiza techniczna - podstawy', duration: '25:00', description: 'Wykresy i swiece japonskie.' },
-                        { id: 'b4', title: 'Wsparcia i opory', duration: '18:00', description: 'Kluczowe poziomy cenowe.' },
-                        { id: 'b5', title: 'Srednie kroczace', duration: '22:00', description: 'Wykorzystanie srednich.' },
-                        { id: 'b6', title: 'Wskazniki techniczne', duration: '30:00', description: 'RSI, MACD, Stochastic.' },
-                        { id: 'b7', title: 'Zarzadzanie ryzykiem', duration: '25:00', description: 'Stop Loss i Take Profit.' },
-                        { id: 'b8', title: 'Psychologia tradingu', duration: '20:00', description: 'Emocje w tradingu.' },
-                        { id: 'b9', title: 'Plan tradingowy', duration: '18:00', description: 'Tworzenie planu.' },
-                        { id: 'b10', title: 'Wybor brokera', duration: '15:00', description: 'Jak wybrac brokera.' },
-                        { id: 'b11', title: 'Pierwsza transakcja', duration: '20:00', description: 'Praktyczne cwiczenie.' },
-                        { id: 'b12', title: 'Podsumowanie', duration: '12:00', description: 'Dalsze kroki.' }
-                    ]
-                },
-                advanced: {
-                    id: 'advanced',
-                    name: 'Zaawansowane Strategie',
-                    level: 'ADVANCED',
-                    description: 'Dla tych, ktorzy chca wyjsc na wyzszy poziom. Zaawansowana analiza, strategie day tradingu i scalping.',
-                    price: 599,
-                    lessons: [
-                        { id: 'a1', title: 'Price Action zaawansowane', duration: '30:00', description: 'Zaawansowane techniki.' },
-                        { id: 'a2', title: 'Formacje harmoniczne', duration: '35:00', description: 'Gartley, Bat, Butterfly.' },
-                        { id: 'a3', title: 'Fale Elliotta', duration: '40:00', description: 'Teoria fal w praktyce.' },
-                        { id: 'a4', title: 'Fibonacci zaawansowany', duration: '25:00', description: 'Poziomy Fibonacci.' },
-                        { id: 'a5', title: 'Order Flow', duration: '35:00', description: 'Analiza przeplywu zlecen.' },
-                        { id: 'a6', title: 'Day Trading', duration: '40:00', description: 'Strategia day tradingowa.' },
-                        { id: 'a7', title: 'Scalping', duration: '30:00', description: 'Szybkie transakcje.' },
-                        { id: 'a8', title: 'Swing Trading', duration: '35:00', description: 'Srednie interwaly.' },
-                        { id: 'a9', title: 'Multi-timeframe', duration: '25:00', description: 'Analiza wielointerwalowa.' },
-                        { id: 'a10', title: 'Backtesting', duration: '30:00', description: 'Testowanie strategii.' },
-                        { id: 'a11', title: 'Automatyzacja', duration: '35:00', description: 'Trading algorytmiczny.' },
-                        { id: 'a12', title: 'Risk Management Pro', duration: '25:00', description: 'Profesjonalne ryzyko.' },
-                        { id: 'a13', title: 'Psychologia Pro', duration: '30:00', description: 'Mindset profesjonalisty.' },
-                        { id: 'a14', title: 'Analiza fundamentalna', duration: '35:00', description: 'Wiadomosci makro.' },
-                        { id: 'a15', title: 'Korelacje rynkowe', duration: '25:00', description: 'Wplyw rynkow.' },
-                        { id: 'a16', title: 'Budowanie portfela', duration: '30:00', description: 'Dywersyfikacja.' },
-                        { id: 'a17', title: 'Dziennik tradera', duration: '20:00', description: 'Prowadzenie dziennika.' },
-                        { id: 'a18', title: 'Optymalizacja', duration: '35:00', description: 'Doskonalenie systemu.' },
-                        { id: 'a19', title: 'Live session', duration: '60:00', description: 'Trading na zywo.' },
-                        { id: 'a20', title: 'Plan rozwoju', duration: '25:00', description: 'Dalsze kroki.' }
-                    ]
-                }
+                basic: { id: 'basic', name: 'Trading od podstaw', price: 299, lessons: 12 },
+                advanced: { id: 'advanced', name: 'Strategie i analiza', price: 499, lessons: 20 }
             },
-            samplePayments: [
-                { date: '2024-12-28', user: 'jan@example.pl', course: 'Trading od Podstaw', method: 'BLIK', amount: 299, status: 'completed' },
-                { date: '2024-12-27', user: 'anna@example.pl', course: 'Zaawansowane Strategie', method: 'Card', amount: 599, status: 'completed' },
-                { date: '2024-12-26', user: 'piotr@example.pl', course: 'Trading od Podstaw', method: 'Apple Pay', amount: 299, status: 'completed' },
-                { date: '2024-12-25', user: 'maria@example.pl', course: 'Zaawansowane Strategie', method: 'BLIK', amount: 599, status: 'pending' },
-            ],
             getUsers() {
                 const stored = localStorage.getItem('tm_users');
-                if (stored) {
-                    const users = JSON.parse(stored);
-                    this.defaultUsers.forEach(defaultUser => {
-                        if (!users.find(u => u.email === defaultUser.email)) users.push(defaultUser);
-                    });
-                    return users;
-                }
-                return [...this.defaultUsers];
+                return stored ? JSON.parse(stored) : [...this.users];
             },
             saveUsers(users) { localStorage.setItem('tm_users', JSON.stringify(users)); },
             getPurchases() { return JSON.parse(localStorage.getItem('tm_purchases') || '[]'); },
-            savePurchases(purchases) { localStorage.setItem('tm_purchases', JSON.stringify(purchases)); },
-            getProgress() { return JSON.parse(localStorage.getItem('tm_progress') || '{}'); },
-            saveProgress(progress) { localStorage.setItem('tm_progress', JSON.stringify(progress)); },
-            getCurrentUser() { return JSON.parse(localStorage.getItem('tm_current_user') || 'null'); },
-            setCurrentUser(user) { localStorage.setItem('tm_current_user', JSON.stringify(user)); },
-            clearCurrentUser() { localStorage.removeItem('tm_current_user'); }
+            savePurchases(p) { localStorage.setItem('tm_purchases', JSON.stringify(p)); },
+            getCurrentUser() { return JSON.parse(localStorage.getItem('tm_user') || 'null'); },
+            setCurrentUser(u) { localStorage.setItem('tm_user', JSON.stringify(u)); },
+            clearUser() { localStorage.removeItem('tm_user'); }
         };
 
-        // ===========================================
-        // STATE
-        // ===========================================
         let currentUser = DB.getCurrentUser();
         let currentCourse = null;
-        let currentLesson = null;
-        let selectedPaymentMethod = null;
 
-        // ===========================================
-        // SECURITY
-        // ===========================================
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'u') || e.key === 'PrintScreen') {
-                e.preventDefault();
-                showToast('Ta akcja jest zablokowana');
-                return false;
-            }
-        });
-
-        document.addEventListener('visibilitychange', function() {
-            const content = document.querySelector('.protected-content');
-            if (content) {
-                content.classList.toggle('blur-protection', document.hidden);
-            }
-        });
-
-        let watermarkInterval;
-        function startWatermark() {
-            const watermark = document.getElementById('videoWatermark');
-            if (!watermark || !currentUser) return;
-            watermark.textContent = `ID: ${currentUser.id} | ${currentUser.email}`;
-            const positions = ['top: 10%; left: 10%;', 'top: 10%; right: 10%;', 'bottom: 10%; left: 10%;', 'bottom: 10%; right: 10%;', 'top: 50%; left: 50%; transform: translate(-50%, -50%);'];
-            let posIndex = 0;
-            clearInterval(watermarkInterval);
-            watermarkInterval = setInterval(() => {
-                posIndex = (posIndex + 1) % positions.length;
-                watermark.style.cssText = positions[posIndex];
-            }, 5000);
-        }
-
-        // ===========================================
-        // UI FUNCTIONS
-        // ===========================================
-        function showPage(pageName) {
+        function showPage(name) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            const page = document.getElementById('page-' + pageName);
-            if (page) page.classList.add('active');
-            if (pageName === 'dashboard' && currentUser) updateDashboard();
-            else if (pageName === 'admin' && (!currentUser || currentUser.role !== 'ADMIN')) {
-                showPage('home');
-                showToast('Brak dostepu do panelu administratora');
-                return;
-            } else if (pageName === 'admin') updateAdminPanel();
+            document.getElementById('page-' + name)?.classList.add('active');
+            if (name === 'dashboard') updateDashboard();
             window.scrollTo(0, 0);
         }
 
-        function showModal(modalName) {
-            const modal = document.getElementById('modal-' + modalName);
-            if (modal) modal.classList.add('active');
+        function showModal(name) {
+            document.getElementById('modal-' + name)?.classList.add('active');
         }
 
-        function hideModal(modalName) {
-            const modal = document.getElementById('modal-' + modalName);
-            if (modal) modal.classList.remove('active');
-        }
-
-        function showToast(message) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+        function hideModal(name) {
+            document.getElementById('modal-' + name)?.classList.remove('active');
         }
 
         function toggleFaq(btn) {
@@ -2726,41 +1387,29 @@
             item.classList.toggle('open');
         }
 
-        function updateNavigation() {
-            const navPublic = document.getElementById('navLinks');
-            const navLoggedIn = document.getElementById('navLinksLoggedIn');
-            const adminLink = document.getElementById('adminLink');
-            const userEmail = document.getElementById('userEmail');
+        function updateNav() {
+            document.getElementById('navLinks').style.display = currentUser ? 'none' : 'flex';
+            document.getElementById('navLinksLoggedIn').style.display = currentUser ? 'flex' : 'none';
             if (currentUser) {
-                navPublic.style.display = 'none';
-                navLoggedIn.style.display = 'flex';
-                userEmail.textContent = currentUser.email;
-                adminLink.style.display = currentUser.role === 'ADMIN' ? 'inline' : 'none';
-            } else {
-                navPublic.style.display = 'flex';
-                navLoggedIn.style.display = 'none';
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('adminLink').style.display = currentUser.role === 'ADMIN' ? 'inline' : 'none';
             }
         }
 
-        // ===========================================
-        // AUTH FUNCTIONS
-        // ===========================================
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            const errorEl = document.getElementById('loginError');
             const users = DB.getUsers();
             const user = users.find(u => u.email === email && u.password === password);
             if (user) {
                 currentUser = user;
                 DB.setCurrentUser(user);
                 hideModal('login');
-                updateNavigation();
-                showToast('Zalogowano pomyslnie!');
+                updateNav();
                 showPage('dashboard');
             } else {
-                errorEl.textContent = 'Nieprawidlowy email lub haslo';
+                document.getElementById('loginError').textContent = 'Nieprawidlowy email lub haslo';
             }
         }
 
@@ -2769,458 +1418,79 @@
             const name = document.getElementById('registerName').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
-            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
-            const errorEl = document.getElementById('registerError');
-            if (password !== passwordConfirm) { errorEl.textContent = 'Hasla nie sa identyczne'; return; }
             const users = DB.getUsers();
-            if (users.find(u => u.email === email)) { errorEl.textContent = 'Ten email jest juz zarejestrowany'; return; }
-            const newUser = { id: 'user-' + Date.now(), email, password, name, role: 'USER', createdAt: new Date().toISOString().split('T')[0] };
+            if (users.find(u => u.email === email)) {
+                document.getElementById('registerError').textContent = 'Email jest juz zarejestrowany';
+                return;
+            }
+            const newUser = { id: 'user-' + Date.now(), email, password, name, role: 'USER' };
             users.push(newUser);
             DB.saveUsers(users);
             currentUser = newUser;
             DB.setCurrentUser(newUser);
             hideModal('register');
-            updateNavigation();
-            showToast('Konto utworzone pomyslnie!');
+            updateNav();
             showPage('dashboard');
         }
 
         function logout() {
             currentUser = null;
-            DB.clearCurrentUser();
-            updateNavigation();
+            DB.clearUser();
+            updateNav();
             showPage('home');
-            showToast('Wylogowano');
         }
 
-        // ===========================================
-        // COURSE FUNCTIONS
-        // ===========================================
-        function showCourseDetails(courseId) {
-            currentCourse = DB.courses[courseId];
-            if (!currentCourse) return;
-            document.getElementById('courseTitle').textContent = currentCourse.name;
-            document.getElementById('paymentCourseName').textContent = currentCourse.name;
-            document.getElementById('paymentCourseDesc').textContent = currentCourse.description;
-            document.getElementById('paymentCoursePrice').textContent = currentCourse.price + ' PLN';
-
-            const purchases = DB.getPurchases();
-            const hasPurchased = currentUser && purchases.find(p => p.userId === currentUser.id && p.courseId === courseId);
-            const videoLocked = document.getElementById('videoLocked');
-            const videoPlayer = document.getElementById('videoPlayer');
-
-            if (hasPurchased) {
-                videoLocked.style.display = 'none';
-                videoPlayer.style.display = 'block';
-                startWatermark();
-            } else {
-                videoLocked.style.display = 'flex';
-                videoPlayer.style.display = 'none';
+        function showCourseDetails(id) {
+            currentCourse = DB.courses[id];
+            if (!currentUser) {
+                showModal('login');
+                return;
             }
-
-            const lessonList = document.getElementById('lessonList');
-            const progress = DB.getProgress();
-            lessonList.innerHTML = currentCourse.lessons.map((lesson, index) => {
-                const isCompleted = progress[currentUser?.id]?.[lesson.id]?.completed;
-                const isLocked = !hasPurchased && index > 0;
-                return `
-                    <div class="lesson-item ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}"
-                         onclick="${isLocked ? 'showToast(\"Kup kurs aby odblokowac\")' : `selectLesson('${lesson.id}')`}">
-                        <div class="lesson-number">${isCompleted ? '✓' : index + 1}</div>
-                        <div class="lesson-info">
-                            <div class="lesson-title">${lesson.title}</div>
-                            <div class="lesson-duration">${lesson.duration} ${isLocked ? '🔒' : ''}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            showPage('course');
-        }
-
-        function selectLesson(lessonId) {
-            const lesson = currentCourse.lessons.find(l => l.id === lessonId);
-            if (!lesson) return;
-            currentLesson = lesson;
-            document.getElementById('currentLessonTitle').textContent = lesson.title;
-            document.getElementById('currentLessonDescription').textContent = lesson.description;
-            document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            showToast('Ladowanie lekcji: ' + lesson.title);
-            setTimeout(() => {
-                if (currentUser && currentLesson) {
-                    const progress = DB.getProgress();
-                    if (!progress[currentUser.id]) progress[currentUser.id] = {};
-                    progress[currentUser.id][currentLesson.id] = { completed: true, completedAt: new Date().toISOString() };
-                    DB.saveProgress(progress);
-                    event.currentTarget.classList.add('completed');
-                    event.currentTarget.querySelector('.lesson-number').textContent = '✓';
-                }
-            }, 3000);
-        }
-
-        // ===========================================
-        // PAYMENT FUNCTIONS
-        // ===========================================
-        function selectPayment(method) {
-            selectedPaymentMethod = method;
-            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
-            document.querySelector(`.payment-method input[value="${method}"]`).parentElement.classList.add('selected');
-            document.getElementById('blikInput').style.display = method === 'blik' ? 'block' : 'none';
-            document.getElementById('cardInput').style.display = method === 'card' ? 'block' : 'none';
+            document.getElementById('paymentInfo').innerHTML = `
+                <h3 style="margin-bottom: 0.5rem;">${currentCourse.name}</h3>
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">${currentCourse.lessons} lekcji</p>
+                <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">${currentCourse.price} zl</p>
+            `;
+            showModal('payment');
         }
 
         function processPayment() {
-            if (!selectedPaymentMethod) { showToast('Wybierz metode platnosci'); return; }
-            if (!currentUser) { hideModal('payment'); showModal('login'); showToast('Zaloguj sie aby kontynuowac'); return; }
-            if (selectedPaymentMethod === 'blik') {
-                const blikCode = document.getElementById('blikCode').value;
-                if (!/^\d{6}$/.test(blikCode)) { showToast('Wprowadz poprawny 6-cyfrowy kod BLIK'); return; }
-            }
-            if (selectedPaymentMethod === 'card') {
-                const cardNumber = document.getElementById('cardNumber').value;
-                const cardExpiry = document.getElementById('cardExpiry').value;
-                const cardCvv = document.getElementById('cardCvv').value;
-                if (!cardNumber || !cardExpiry || !cardCvv) { showToast('Wypelnij wszystkie dane karty'); return; }
-            }
-            showToast('Przetwarzanie platnosci...');
-            setTimeout(() => {
-                const purchases = DB.getPurchases();
-                purchases.push({
-                    id: 'purchase-' + Date.now(),
-                    userId: currentUser.id,
-                    courseId: currentCourse.id,
-                    courseName: currentCourse.name,
-                    method: selectedPaymentMethod.toUpperCase(),
-                    amount: currentCourse.price,
-                    status: 'completed',
-                    createdAt: new Date().toISOString()
-                });
-                DB.savePurchases(purchases);
-                hideModal('payment');
-                showModal('payment-success');
-                selectedPaymentMethod = null;
-                document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
-                document.getElementById('blikCode').value = '';
-                document.getElementById('cardNumber').value = '';
-                document.getElementById('cardExpiry').value = '';
-                document.getElementById('cardCvv').value = '';
-            }, 2000);
+            if (!currentUser || !currentCourse) return;
+            const purchases = DB.getPurchases();
+            purchases.push({ userId: currentUser.id, courseId: currentCourse.id, date: new Date().toISOString() });
+            DB.savePurchases(purchases);
+            hideModal('payment');
+            alert('Dziekujemy za zakup! Kurs jest teraz dostepny w zakladce "Moje kursy".');
+            showPage('dashboard');
         }
 
-        // ===========================================
-        // DASHBOARD FUNCTIONS
-        // ===========================================
         function updateDashboard() {
             if (!currentUser) return;
-            document.getElementById('dashboardUserName').textContent = currentUser.name || currentUser.email;
             const purchases = DB.getPurchases().filter(p => p.userId === currentUser.id);
-            const progress = DB.getProgress()[currentUser.id] || {};
             document.getElementById('purchasedCoursesCount').textContent = purchases.length;
-            let completedLessons = 0, totalLessons = 0;
-            purchases.forEach(purchase => {
-                const course = DB.courses[purchase.courseId];
-                if (course) {
-                    totalLessons += course.lessons.length;
-                    course.lessons.forEach(lesson => { if (progress[lesson.id]?.completed) completedLessons++; });
-                }
-            });
-            document.getElementById('completedLessonsCount').textContent = completedLessons;
-            document.getElementById('progressPercent').textContent = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) + '%' : '0%';
+            document.getElementById('completedLessonsCount').textContent = '0';
+            document.getElementById('progressPercent').textContent = '0%';
 
-            const coursesContainer = document.getElementById('userCourses');
+            const container = document.getElementById('userCourses');
             if (purchases.length > 0) {
-                coursesContainer.innerHTML = purchases.map(purchase => {
-                    const course = DB.courses[purchase.courseId];
-                    if (!course) return '';
-                    const courseProgress = course.lessons.filter(l => progress[l.id]?.completed).length;
-                    const progressPercent = Math.round((courseProgress / course.lessons.length) * 100);
-                    return `
-                        <div class="course-card ${course.level === 'ADVANCED' ? 'premium' : ''}">
-                            <div class="course-image">${course.level === 'ADVANCED' ? '🚀' : '📊'}</div>
-                            <div class="course-content">
-                                <span class="course-badge ${course.level === 'ADVANCED' ? 'badge-advanced' : 'badge-beginner'}">
-                                    ${course.level === 'ADVANCED' ? 'Zaawansowany' : 'Podstawowy'}
-                                </span>
-                                <h3 class="course-title">${course.name}</h3>
-                                <div class="course-meta">
-                                    <span>Postep: ${progressPercent}%</span>
-                                    <span>${courseProgress}/${course.lessons.length} lekcji</span>
-                                </div>
-                                <div style="background: var(--card-border); border-radius: 10px; height: 8px; margin: 1rem 0;">
-                                    <div style="background: var(--accent-green); border-radius: 10px; height: 100%; width: ${progressPercent}%;"></div>
-                                </div>
-                                <button class="btn btn-primary" onclick="showCourseDetails('${course.id}')">Kontynuuj</button>
-                            </div>
-                        </div>
-                    `;
+                container.innerHTML = purchases.map(p => {
+                    const course = DB.courses[p.courseId];
+                    return `<div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+                        <h3 style="margin-bottom: 0.5rem;">${course.name}</h3>
+                        <p style="color: var(--text-muted); font-size: 0.875rem;">${course.lessons} lekcji</p>
+                    </div>`;
                 }).join('');
             } else {
-                coursesContainer.innerHTML = `<div class="alert alert-info">Nie masz jeszcze zadnych kursow. <a href="#" onclick="showPage('home')">Przegladaj kursy</a></div>`;
-            }
-
-            const paymentHistoryBody = document.getElementById('paymentHistoryBody');
-            if (purchases.length > 0) {
-                paymentHistoryBody.innerHTML = purchases.map(p => `
-                    <tr>
-                        <td>${new Date(p.createdAt).toLocaleDateString('pl-PL')}</td>
-                        <td>${p.courseName}</td>
-                        <td>${p.method}</td>
-                        <td>${p.amount} PLN</td>
-                        <td><span class="status-badge status-active">Zakonczona</span></td>
-                    </tr>
-                `).join('');
-            } else {
-                paymentHistoryBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Brak historii platnosci</td></tr>`;
+                container.innerHTML = `<p style="color: var(--text-muted);">Nie masz jeszcze zadnych kursow. <a href="#courses-section" onclick="showPage('home')" style="color: var(--accent);">Przegladaj kursy</a></p>`;
             }
         }
 
-        // ===========================================
-        // ADMIN FUNCTIONS
-        // ===========================================
-        function switchAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.admin-tab[onclick="switchAdminTab('${tab}')"]`).classList.add('active');
-            document.querySelectorAll('.admin-panel-content').forEach(c => c.style.display = 'none');
-            document.getElementById('admin-' + tab).style.display = 'block';
-        }
-
-        function updateAdminPanel() {
-            const users = DB.getUsers();
-            const purchases = DB.getPurchases();
-            document.getElementById('adminUsersTable').innerHTML = users.map(user => {
-                const userPurchases = purchases.filter(p => p.userId === user.id);
-                return `
-                    <tr>
-                        <td>${user.email}</td>
-                        <td><span class="status-badge ${user.role === 'ADMIN' ? 'status-pending' : 'status-active'}">${user.role}</span></td>
-                        <td>${user.createdAt}</td>
-                        <td>${userPurchases.length}</td>
-                        <td><span class="status-badge status-active">Aktywny</span></td>
-                    </tr>
-                `;
-            }).join('');
-
-            document.getElementById('adminPaymentsTable').innerHTML = DB.samplePayments.map(p => `
-                <tr>
-                    <td>${p.date}</td>
-                    <td>${p.user}</td>
-                    <td>${p.course}</td>
-                    <td>${p.method}</td>
-                    <td>${p.amount} PLN</td>
-                    <td><span class="status-badge ${p.status === 'completed' ? 'status-active' : 'status-pending'}">${p.status === 'completed' ? 'Zakonczona' : 'Oczekujaca'}</span></td>
-                </tr>
-            `).join('');
-        }
-
-        // ===========================================
-        // INITIALIZATION
-        // ===========================================
         document.addEventListener('DOMContentLoaded', function() {
-            updateNavigation();
+            updateNav();
             document.querySelectorAll('.modal-overlay').forEach(overlay => {
-                overlay.addEventListener('click', function(e) {
-                    if (e.target === overlay) overlay.classList.remove('active');
-                });
+                overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('active'); });
             });
-            // Initialize trading animations
-            initTradingAnimations();
         });
-
-        // ===========================================
-        // TRADING ANIMATIONS
-        // ===========================================
-        function initTradingAnimations() {
-            // Floating Price Bubbles
-            createFloatingPrices();
-            setInterval(createFloatingPrices, 3000);
-
-            // Trade Signals
-            createTradeSignals();
-            setInterval(createTradeSignals, 4000);
-
-            // Animate counters
-            animateCounter('profitCounter', 2847, '+$', '');
-            animateCounter('winRateCounter', 87, '', '%');
-
-            // Update ticker prices randomly
-            setInterval(updateTickerPrices, 2000);
-
-            // Intersection Observer for scroll animations
-            initScrollAnimations();
-        }
-
-        function createFloatingPrices() {
-            const container = document.getElementById('floatingPrices');
-            if (!container) return;
-
-            const prices = ['+12.5', '-8.3', '+45.2', '+23.7', '-15.1', '+67.8', '+5.4', '-3.2'];
-            const isGreen = Math.random() > 0.3;
-            const price = prices[Math.floor(Math.random() * prices.length)];
-
-            const bubble = document.createElement('div');
-            bubble.className = `price-bubble ${isGreen ? 'green' : 'red'}`;
-            bubble.textContent = `${isGreen ? '+' : ''}${(Math.random() * 100).toFixed(1)} pips`;
-            bubble.style.left = `${10 + Math.random() * 80}%`;
-            bubble.style.bottom = '10%';
-            bubble.style.animationDelay = `${Math.random() * 0.5}s`;
-
-            container.appendChild(bubble);
-
-            setTimeout(() => bubble.remove(), 4000);
-        }
-
-        function createTradeSignals() {
-            const container = document.getElementById('tradeSignals');
-            if (!container) return;
-
-            const isBuy = Math.random() > 0.4;
-            const signal = document.createElement('div');
-            signal.className = `trade-signal ${isBuy ? 'buy' : 'sell'}`;
-            signal.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="${isBuy ? 'M7 14l5-5 5 5' : 'M7 10l5 5 5-5'}"/>
-                </svg>
-                ${isBuy ? 'BUY' : 'SELL'}
-            `;
-            signal.style.left = `${20 + Math.random() * 60}%`;
-            signal.style.top = `${20 + Math.random() * 50}%`;
-            signal.style.animationDelay = `${Math.random() * 0.3}s`;
-
-            container.appendChild(signal);
-
-            setTimeout(() => signal.remove(), 3000);
-        }
-
-        function animateCounter(elementId, targetValue, prefix, suffix) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
-
-            let currentValue = 0;
-            const duration = 2000;
-            const steps = 60;
-            const increment = targetValue / steps;
-            const stepDuration = duration / steps;
-
-            const timer = setInterval(() => {
-                currentValue += increment;
-                if (currentValue >= targetValue) {
-                    currentValue = targetValue;
-                    clearInterval(timer);
-                }
-                element.textContent = `${prefix}${Math.floor(currentValue).toLocaleString()}${suffix}`;
-            }, stepDuration);
-        }
-
-        function updateTickerPrices() {
-            const tickerItems = document.querySelectorAll('.ticker-price');
-            tickerItems.forEach(item => {
-                const currentText = item.textContent;
-                const currentValue = parseFloat(currentText.replace(/,/g, ''));
-                if (!isNaN(currentValue)) {
-                    const change = (Math.random() - 0.5) * (currentValue * 0.001);
-                    const newValue = currentValue + change;
-                    if (currentValue > 1000) {
-                        item.textContent = Math.floor(newValue).toLocaleString();
-                    } else if (currentValue > 100) {
-                        item.textContent = newValue.toFixed(2);
-                    } else {
-                        item.textContent = newValue.toFixed(4);
-                    }
-                    // Flash effect
-                    item.style.color = change > 0 ? 'var(--accent-green)' : 'var(--accent-red)';
-                    setTimeout(() => item.style.color = '', 500);
-                }
-            });
-        }
-
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe feature cards
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.style.opacity = '0';
-                observer.observe(card);
-            });
-
-            // Observe testimonial cards
-            document.querySelectorAll('.testimonial-card').forEach(card => {
-                card.style.opacity = '0';
-                observer.observe(card);
-            });
-
-            // Observe course cards
-            document.querySelectorAll('.course-card').forEach(card => {
-                card.style.opacity = '0';
-                observer.observe(card);
-            });
-
-            // Observe stat items
-            document.querySelectorAll('.stat-item').forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.animationDelay = `${index * 0.1}s`;
-                observer.observe(item);
-            });
-        }
-
-        // Animate stats when visible
-        let statsAnimated = false;
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !statsAnimated) {
-                    statsAnimated = true;
-                    animateStatValues();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        function animateStatValues() {
-            const stats = [
-                { selector: '.stat-value:nth-of-type(1)', value: 2847, suffix: '+' },
-                { selector: '.stat-value:nth-of-type(2)', value: 89, suffix: '%' },
-            ];
-
-            document.querySelectorAll('.stat-value').forEach((el, i) => {
-                const text = el.textContent;
-                const numMatch = text.match(/[\d,]+/);
-                if (numMatch) {
-                    const targetNum = parseInt(numMatch[0].replace(/,/g, ''));
-                    const prefix = text.replace(/[\d,]+.*/, '');
-                    const suffix = text.replace(/.*[\d,]+/, '');
-
-                    let current = 0;
-                    const duration = 2000;
-                    const steps = 50;
-                    const increment = targetNum / steps;
-
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= targetNum) {
-                            current = targetNum;
-                            clearInterval(timer);
-                        }
-                        el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
-                    }, duration / steps);
-                }
-            });
-        }
-
-        // Start stats observer
-        setTimeout(() => {
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) statsObserver.observe(statsSection);
-        }, 100);
     </script>
 </body>
 </html>
