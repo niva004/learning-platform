@@ -824,16 +824,23 @@
         /* Big shark silhouette */
         .shark-silhouette {
             position: absolute;
-            width: 600px;
-            height: 300px;
-            opacity: 0.03;
-            right: -100px;
-            top: 20%;
+            width: 800px;
+            height: 400px;
+            opacity: 0.06;
+            right: -50px;
+            top: 15%;
+            animation: sharkFloat 8s ease-in-out infinite;
         }
 
         .shark-silhouette svg {
             width: 100%;
             height: 100%;
+            filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));
+        }
+
+        @keyframes sharkFloat {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(-10px); }
         }
 
         /* Candlestick chart in background */
@@ -902,18 +909,26 @@
         /* Swimming financial shark */
         .shark-swim {
             position: absolute;
-            animation: sharkCruise 25s linear infinite;
-            opacity: 0.08;
+            animation: sharkCruise 30s linear infinite;
+            opacity: 0.15;
         }
 
         .shark-swim svg {
-            width: 200px;
+            width: 280px;
             height: auto;
-            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.5));
+            filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.6));
+        }
+
+        .shark-swim.small {
+            opacity: 0.08;
+        }
+
+        .shark-swim.small svg {
+            width: 150px;
         }
 
         .shark-swim.reverse {
-            animation: sharkCruiseReverse 30s linear infinite;
+            animation: sharkCruiseReverse 35s linear infinite;
         }
 
         .shark-swim.reverse svg {
@@ -921,19 +936,21 @@
         }
 
         @keyframes sharkCruise {
-            0% { left: -250px; top: 25%; }
-            25% { top: 30%; }
-            50% { top: 20%; }
-            75% { top: 28%; }
+            0% { left: -300px; top: 20%; }
+            20% { top: 28%; }
+            40% { top: 18%; }
+            60% { top: 25%; }
+            80% { top: 15%; }
             100% { left: 110%; top: 22%; }
         }
 
         @keyframes sharkCruiseReverse {
-            0% { right: -250px; top: 55%; }
-            25% { top: 50%; }
-            50% { top: 60%; }
-            75% { top: 52%; }
-            100% { right: 110%; top: 58%; }
+            0% { right: -300px; top: 50%; }
+            20% { top: 45%; }
+            40% { top: 55%; }
+            60% { top: 48%; }
+            80% { top: 58%; }
+            100% { right: 110%; top: 52%; }
         }
 
         /* Dollar signs floating */
@@ -1118,13 +1135,28 @@
 
         <!-- Big shark silhouette -->
         <div class="shark-silhouette">
-            <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M180 50C180 40 150 25 120 25C100 25 90 35 80 35C70 35 60 25 40 25C10 25 -10 40 5 60C15 70 30 70 50 60C60 55 70 60 80 70C90 80 100 80 110 80C120 80 130 80 140 70C150 60 160 55 170 60C185 70 195 65 198 55C200 50 180 50 180 50Z" fill="url(#sharkBgGrad)"/>
-                <path d="M140 20L170 5L165 30L140 20Z" fill="url(#sharkBgGrad)"/>
-                <circle cx="55" cy="48" r="4" fill="#00d4ff"/>
+            <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Realistic shark body -->
+                <path d="M380 100 C370 85 340 70 300 65 L280 60 C250 55 200 50 150 55 C100 60 60 75 30 90 C15 97 5 105 10 110 C15 118 35 120 60 115 L80 112 C100 110 120 115 140 125 C160 135 180 140 200 140 C220 140 240 135 260 125 C280 115 300 112 320 115 L340 118 C365 122 385 115 390 105 C392 100 385 95 380 100 Z" fill="url(#sharkBgGrad)"/>
+                <!-- Dorsal fin -->
+                <path d="M200 55 L230 15 L250 55 Z" fill="url(#sharkBgGrad)"/>
+                <!-- Tail fin -->
+                <path d="M30 90 L-10 60 L5 85 L-15 100 L5 105 L-10 130 L30 100 Z" fill="url(#sharkBgGrad)"/>
+                <!-- Pectoral fin -->
+                <path d="M280 95 L320 130 L330 120 L295 90 Z" fill="url(#sharkBgGrad)"/>
+                <!-- Gill slits -->
+                <path d="M310 80 L305 95" stroke="#0099cc" stroke-width="2" opacity="0.5"/>
+                <path d="M320 78 L315 93" stroke="#0099cc" stroke-width="2" opacity="0.5"/>
+                <path d="M330 76 L325 91" stroke="#0099cc" stroke-width="2" opacity="0.5"/>
+                <!-- Eye -->
+                <circle cx="345" cy="85" r="6" fill="#00d4ff"/>
+                <circle cx="346" cy="84" r="2" fill="#020c1b"/>
+                <!-- Mouth line -->
+                <path d="M360 95 C355 100 345 105 335 102" stroke="#0099cc" stroke-width="2" fill="none" opacity="0.6"/>
                 <defs>
-                    <linearGradient id="sharkBgGrad" x1="0" y1="50" x2="200" y2="50">
+                    <linearGradient id="sharkBgGrad" x1="0" y1="100" x2="400" y2="100">
                         <stop stop-color="#00d4ff"/>
+                        <stop offset="0.5" stop-color="#00b8e6"/>
                         <stop offset="1" stop-color="#0099cc"/>
                     </linearGradient>
                 </defs>
@@ -1133,25 +1165,57 @@
 
         <!-- Swimming sharks -->
         <div class="shark-swim" style="animation-delay: 0s;">
-            <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M180 40C180 32 150 18 120 18C100 18 90 28 80 28C70 28 60 18 40 18C10 18 -10 32 5 48C15 56 30 56 50 48C60 44 70 48 80 56C90 64 100 64 110 64C120 64 130 64 140 56C150 48 160 44 170 48C185 56 195 52 198 44C200 40 180 40 180 40Z" fill="url(#swimShark1)"/>
-                <path d="M140 12L170 0L165 24L140 12Z" fill="url(#swimShark1)"/>
-                <circle cx="55" cy="38" r="3" fill="#020c1b"/>
+            <svg viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Realistic shark body -->
+                <path d="M280 60 C270 48 245 38 210 35 L190 32 C165 28 125 25 85 30 C50 35 25 48 10 60 C2 66 -2 72 3 76 C8 82 25 83 45 79 L65 76 C85 74 105 78 125 88 C145 98 165 102 185 102 C205 102 225 98 245 88 C260 80 275 78 285 80 C295 82 298 75 295 68 C293 62 285 58 280 60 Z" fill="url(#swimShark1)"/>
+                <!-- Dorsal fin -->
+                <path d="M150 30 L175 5 L190 30 Z" fill="url(#swimShark1)"/>
+                <!-- Tail fin -->
+                <path d="M10 60 L-20 35 L0 55 L-25 65 L0 70 L-20 90 L10 70 Z" fill="url(#swimShark1)"/>
+                <!-- Pectoral fin -->
+                <path d="M200 58 L235 85 L245 75 L215 52 Z" fill="url(#swimShark1)"/>
+                <!-- Gill slits -->
+                <path d="M225 48 L222 58" stroke="#007acc" stroke-width="1.5" opacity="0.6"/>
+                <path d="M232 46 L229 56" stroke="#007acc" stroke-width="1.5" opacity="0.6"/>
+                <path d="M239 44 L236 54" stroke="#007acc" stroke-width="1.5" opacity="0.6"/>
+                <!-- Eye -->
+                <circle cx="255" cy="52" r="5" fill="#00d4ff"/>
+                <circle cx="256" cy="51" r="2" fill="#020c1b"/>
+                <!-- Teeth hint -->
+                <path d="M270 62 L265 66 L270 66 L265 70 L270 70" stroke="#fff" stroke-width="1" opacity="0.3"/>
                 <defs>
-                    <linearGradient id="swimShark1" x1="0" y1="40" x2="200" y2="40">
+                    <linearGradient id="swimShark1" x1="0" y1="60" x2="300" y2="60">
+                        <stop stop-color="#00d4ff"/>
+                        <stop offset="0.5" stop-color="#00c4eb"/>
+                        <stop offset="1" stop-color="#0099cc"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="shark-swim reverse" style="animation-delay: -15s;">
+            <svg viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M280 60 C270 48 245 38 210 35 L190 32 C165 28 125 25 85 30 C50 35 25 48 10 60 C2 66 -2 72 3 76 C8 82 25 83 45 79 L65 76 C85 74 105 78 125 88 C145 98 165 102 185 102 C205 102 225 98 245 88 C260 80 275 78 285 80 C295 82 298 75 295 68 C293 62 285 58 280 60 Z" fill="url(#swimShark2)"/>
+                <path d="M150 30 L175 5 L190 30 Z" fill="url(#swimShark2)"/>
+                <path d="M10 60 L-20 35 L0 55 L-25 65 L0 70 L-20 90 L10 70 Z" fill="url(#swimShark2)"/>
+                <path d="M200 58 L235 85 L245 75 L215 52 Z" fill="url(#swimShark2)"/>
+                <circle cx="255" cy="52" r="5" fill="#00d4ff"/>
+                <circle cx="256" cy="51" r="2" fill="#020c1b"/>
+                <defs>
+                    <linearGradient id="swimShark2" x1="0" y1="60" x2="300" y2="60">
                         <stop stop-color="#00d4ff"/>
                         <stop offset="1" stop-color="#0099cc"/>
                     </linearGradient>
                 </defs>
             </svg>
         </div>
-        <div class="shark-swim reverse" style="animation-delay: -12s;">
-            <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M180 40C180 32 150 18 120 18C100 18 90 28 80 28C70 28 60 18 40 18C10 18 -10 32 5 48C15 56 30 56 50 48C60 44 70 48 80 56C90 64 100 64 110 64C120 64 130 64 140 56C150 48 160 44 170 48C185 56 195 52 198 44C200 40 180 40 180 40Z" fill="url(#swimShark2)"/>
-                <path d="M140 12L170 0L165 24L140 12Z" fill="url(#swimShark2)"/>
-                <circle cx="55" cy="38" r="3" fill="#020c1b"/>
+        <div class="shark-swim small" style="animation-delay: -8s; top: 70%;">
+            <svg viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M280 60 C270 48 245 38 210 35 L190 32 C165 28 125 25 85 30 C50 35 25 48 10 60 C2 66 -2 72 3 76 C8 82 25 83 45 79 L65 76 C85 74 105 78 125 88 C145 98 165 102 185 102 C205 102 225 98 245 88 C260 80 275 78 285 80 C295 82 298 75 295 68 C293 62 285 58 280 60 Z" fill="url(#swimShark3)"/>
+                <path d="M150 30 L175 5 L190 30 Z" fill="url(#swimShark3)"/>
+                <path d="M10 60 L-20 35 L0 55 L-25 65 L0 70 L-20 90 L10 70 Z" fill="url(#swimShark3)"/>
+                <circle cx="255" cy="52" r="4" fill="#00d4ff"/>
                 <defs>
-                    <linearGradient id="swimShark2" x1="0" y1="40" x2="200" y2="40">
+                    <linearGradient id="swimShark3" x1="0" y1="60" x2="300" y2="60">
                         <stop stop-color="#00d4ff"/>
                         <stop offset="1" stop-color="#0099cc"/>
                     </linearGradient>
