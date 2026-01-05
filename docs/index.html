@@ -794,7 +794,7 @@
             border: none;
         }
 
-        /* Video protection overlay */
+        /* Video protection overlay - aggressive */
         .video-protection {
             position: absolute;
             top: 0;
@@ -802,26 +802,127 @@
             right: 0;
             bottom: 0;
             pointer-events: none;
+            z-index: 10;
         }
 
-        .video-protection::before {
-            content: '';
+        /* Top bar - covers "Watch on YouTube" link */
+        .video-overlay-top {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 50px;
-            background: linear-gradient(to bottom, #000, transparent);
+            height: 60px;
+            background: #000;
+            pointer-events: auto;
+            z-index: 20;
         }
 
-        .video-protection::after {
-            content: '';
+        /* Bottom bar - covers YouTube logo and controls */
+        .video-overlay-bottom {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 40px;
-            background: linear-gradient(to top, #000, transparent);
+            height: 70px;
+            background: #000;
+            pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* Right side - covers YT logo corner */
+        .video-overlay-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80px;
+            background: linear-gradient(to left, #000 60%, transparent);
+            pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* Left side */
+        .video-overlay-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(to right, #000 40%, transparent);
+            pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* Center click area - allows play/pause only */
+        .video-click-area {
+            position: absolute;
+            top: 60px;
+            left: 40px;
+            right: 80px;
+            bottom: 70px;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        /* Custom play button overlay */
+        .video-play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 212, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 25;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .video-play-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(0, 212, 255, 1);
+        }
+
+        .video-play-overlay.hidden {
+            display: none;
+        }
+
+        .video-play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 28px solid #020c1b;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            margin-left: 6px;
+        }
+
+        /* The SHARKS branding bar */
+        .video-branding {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(to top, #000 80%, transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            z-index: 21;
+        }
+
+        .video-branding-logo {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
         }
 
         .video-close-btn {
@@ -2081,10 +2182,19 @@
                 <iframe
                     id="videoFrame"
                     src=""
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope"
+                    referrerpolicy="no-referrer">
                 </iframe>
-                <div class="video-protection"></div>
+                <!-- Aggressive overlays to hide YouTube UI -->
+                <div class="video-overlay-top"></div>
+                <div class="video-overlay-bottom"></div>
+                <div class="video-overlay-left"></div>
+                <div class="video-overlay-right"></div>
+                <div class="video-click-area"></div>
+                <div class="video-play-overlay" id="videoPlayBtn" onclick="startVideo()"></div>
+                <div class="video-branding">
+                    <span class="video-branding-logo">THE SHARKS</span>
+                </div>
                 <div class="video-watermark">THE SHARKS</div>
             </div>
             <div class="blur-message">Wróć do okna aby kontynuować</div>
@@ -2244,25 +2354,46 @@
         });
 
         // Video Player Functions
+        let currentVideoId = null;
+
         function openVideoPlayer(videoId, title) {
             const modal = document.getElementById('videoModal');
             const frame = document.getElementById('videoFrame');
             const titleEl = document.getElementById('videoTitle');
+            const playBtn = document.getElementById('videoPlayBtn');
 
-            // YouTube embed with privacy-enhanced mode and minimal branding
-            const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0`;
-
-            frame.src = embedUrl;
+            currentVideoId = videoId;
             titleEl.textContent = title || 'Kurs wideo';
+
+            // Don't load video yet - show play button first
+            frame.src = '';
+            playBtn.classList.remove('hidden');
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function startVideo() {
+            if (!currentVideoId) return;
+
+            const frame = document.getElementById('videoFrame');
+            const playBtn = document.getElementById('videoPlayBtn');
+
+            // YouTube embed with autoplay, no controls visible, minimal UI
+            const embedUrl = `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&controls=0&disablekb=1&fs=0&playsinline=1`;
+
+            frame.src = embedUrl;
+            playBtn.classList.add('hidden');
         }
 
         function closeVideoPlayer() {
             const modal = document.getElementById('videoModal');
             const frame = document.getElementById('videoFrame');
+            const playBtn = document.getElementById('videoPlayBtn');
 
             frame.src = '';
+            currentVideoId = null;
+            playBtn.classList.remove('hidden');
             modal.classList.remove('active');
             modal.classList.remove('blur-protection');
             document.body.style.overflow = '';
