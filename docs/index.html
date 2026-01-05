@@ -382,9 +382,9 @@
         /* Courses */
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -1174,7 +1174,7 @@
             }
 
             .courses-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .instructor-content {
@@ -1211,6 +1211,10 @@
             }
 
             .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1653,6 +1657,25 @@
                 <p class="section-subtitle">Wybierz kurs dopasowany do Twojego poziomu zaawansowania.</p>
             </div>
             <div class="courses-grid">
+                <!-- FREE YouTube Course -->
+                <div class="course-card" style="border-color: var(--success);">
+                    <div class="course-header" style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.15), rgba(0, 230, 118, 0.05));">
+                        <div class="course-level" style="color: var(--success);">Darmowy kurs</div>
+                        <h3 class="course-title">Wprowadzenie do tradingu</h3>
+                    </div>
+                    <div class="course-content">
+                        <p class="course-description">Darmowy kurs wideo na YouTube. Idealne wprowadzenie dla osób, które chcą poznać podstawy tradingu przed zakupem pełnego kursu.</p>
+                        <div class="course-meta">
+                            <span>🎬 Wideo YouTube</span>
+                            <span>⏱️ ~1 godzina</span>
+                            <span>🆓 Bezpłatnie</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price" style="color: var(--success);">0 zł <span>/ darmowy</span></div>
+                            <a href="https://www.youtube.com/watch?v=5cA6imwTp_Y" target="_blank" rel="noopener" class="btn btn-primary" style="background: linear-gradient(135deg, var(--success), #00c853);">Oglądaj</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="course-card">
                     <div class="course-header">
                         <div class="course-level">Poziom podstawowy</div>
