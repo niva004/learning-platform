@@ -754,6 +754,145 @@
             color: var(--accent);
         }
 
+        /* Video Player Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Video protection overlay */
+        .video-protection {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .video-protection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom, #000, transparent);
+        }
+
+        .video-protection::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, #000, transparent);
+        }
+
+        .video-close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .video-close-btn:hover {
+            color: white;
+        }
+
+        .video-title {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-align: left;
+        }
+
+        .video-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(0, 212, 255, 0.04);
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            letter-spacing: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Screenshot protection */
+        .video-modal.blur-protection .video-modal-content {
+            filter: blur(50px) brightness(0.3);
+            transition: filter 0.3s;
+        }
+
+        .video-modal .blur-message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .video-modal.blur-protection .blur-message {
+            display: block;
+        }
+
+        .video-modal * {
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
         /* Pages */
         .page {
             display: none;
@@ -1672,7 +1811,7 @@
                         </div>
                         <div class="course-footer">
                             <div class="course-price" style="color: var(--success);">0 zł <span>/ darmowy</span></div>
-                            <a href="https://www.youtube.com/watch?v=5cA6imwTp_Y" target="_blank" rel="noopener" class="btn btn-primary" style="background: linear-gradient(135deg, var(--success), #00c853);">Oglądaj</a>
+                            <button onclick="openVideoPlayer('5cA6imwTp_Y', 'Wprowadzenie do tradingu')" class="btn btn-primary" style="background: linear-gradient(135deg, var(--success), #00c853);">Oglądaj</button>
                         </div>
                     </div>
                 </div>
@@ -1933,6 +2072,25 @@
         </div>
     </div>
 
+    <!-- Video Player Modal -->
+    <div class="video-modal" id="videoModal" oncontextmenu="return false;">
+        <div class="video-modal-container">
+            <div class="video-title" id="videoTitle">Wprowadzenie do tradingu</div>
+            <button class="video-close-btn" onclick="closeVideoPlayer()">&times;</button>
+            <div class="video-modal-content">
+                <iframe
+                    id="videoFrame"
+                    src=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-protection"></div>
+                <div class="video-watermark">THE SHARKS</div>
+            </div>
+            <div class="blur-message">Wróć do okna aby kontynuować</div>
+        </div>
+    </div>
+
     <script>
         // Simple state management
         const DB = {
@@ -2083,6 +2241,78 @@
             document.querySelectorAll('.modal-overlay').forEach(overlay => {
                 overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('active'); });
             });
+        });
+
+        // Video Player Functions
+        function openVideoPlayer(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            const titleEl = document.getElementById('videoTitle');
+
+            // YouTube embed with privacy-enhanced mode and minimal branding
+            const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0`;
+
+            frame.src = embedUrl;
+            titleEl.textContent = title || 'Kurs wideo';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoPlayer() {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+
+            frame.src = '';
+            modal.classList.remove('active');
+            modal.classList.remove('blur-protection');
+            document.body.style.overflow = '';
+        }
+
+        // Screenshot protection - blur when window loses focus
+        document.addEventListener('visibilitychange', function() {
+            const modal = document.getElementById('videoModal');
+            if (modal.classList.contains('active')) {
+                if (document.hidden) {
+                    modal.classList.add('blur-protection');
+                } else {
+                    modal.classList.remove('blur-protection');
+                }
+            }
+        });
+
+        window.addEventListener('blur', function() {
+            const modal = document.getElementById('videoModal');
+            if (modal.classList.contains('active')) {
+                modal.classList.add('blur-protection');
+            }
+        });
+
+        window.addEventListener('focus', function() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('blur-protection');
+        });
+
+        // Close video on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoPlayer();
+            }
+            // Block Print Screen
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                const modal = document.getElementById('videoModal');
+                if (modal.classList.contains('active')) {
+                    modal.classList.add('blur-protection');
+                    setTimeout(() => modal.classList.remove('blur-protection'), 1000);
+                }
+            }
+        });
+
+        // Click outside to close
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoPlayer();
+            }
         });
     </script>
 </body>
